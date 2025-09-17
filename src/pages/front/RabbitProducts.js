@@ -10,6 +10,7 @@ function RabbitProducts() {
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`
     );
+
     console.log(productRes);
     setProducts(productRes.data.products);
     setPagination(productRes.data.pagination);
@@ -41,7 +42,7 @@ function RabbitProducts() {
             </div>
           </div>
 
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
             {products.map((products) => (
               <div
                 key={products.id}
