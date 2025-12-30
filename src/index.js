@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./stylesheets/tailwind.css";
 import "./stylesheets/all.scss";
+import "remixicon/fonts/remixicon.css";
 import App from "./App";
 
 import axios from "axios";
