@@ -29,13 +29,11 @@ function FrontLayout() {
       <Outlet context={{ getCart, cartData }}></Outlet>
 
       <footer className="relative  overflow-hidden pt-16 py-8">
-        <a href="">
-          <img
-            src="/footer.bg.svg"
-            alt="波浪背景"
-            className="absolute top-0 left-0 w-full object-cover -z-10"
-          />
-        </a>
+        <img
+          src="/footer.bg.svg"
+          alt="波浪背景"
+          className="absolute top-0 left-0 w-full object-cover -z-10"
+        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-8 text-sm mt-[150px]">
           <div className="flex flex-col items-center md:items-start py-12">
@@ -50,17 +48,52 @@ function FrontLayout() {
           <div className="text-center  text-white ">
             <p className="font-bold mb-2 text-5xl sm:text-4xl py-12">會員</p>
             <ul className="space-y-2 text-3xl sm:text-2xl">
-              <li>加入會員</li>
-              <li>訂單查詢</li>
-              <li>會員資訊</li>
+              <li>
+                <a
+                  href="https://www.youtube.com/"
+                  className="text-white no-underline font-bold"
+                >
+                  加入會員
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/"
+                  className="text-white no-underline font-bold"
+                >
+                  訂單查詢
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/"
+                  className="text-white no-underline font-bold"
+                >
+                  會員資訊
+                </a>
+              </li>
             </ul>
           </div>
 
           <div className=" text-center  text-white">
             <p className="font-bold mb-2 text-5xl sm:text-4xl py-12 ">客服</p>
             <ul className="space-y-2 text-3xl sm:text-2xl">
-              <li>常見問題</li>
-              <li>聯絡資訊</li>
+              <li>
+                <a
+                  href="https://www.youtube.com/"
+                  className="text-white no-underline font-bold"
+                >
+                  常見問題
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/"
+                  className="text-white no-underline font-bold"
+                >
+                  聯絡資訊
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -69,14 +102,14 @@ function FrontLayout() {
               關於我們
             </p>
             <div className="flex justify-center  gap-3 mb-2">
-              <a href="">
+              <a href="https://www.instagram.com/">
                 <img
                   src="/instagram.png"
                   alt="Instagram"
                   className="mb-2 w-12 h-12"
                 />
               </a>
-              <a href="">
+              <a href="https://www.facebook.com/">
                 <img
                   src="/facebook.png"
                   alt="Facebook"

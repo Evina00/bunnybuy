@@ -151,7 +151,7 @@ function Checkout() {
                 <div className="flex items-center gap-3 mb-6" key={item.id}>
                   <img
                     src={item.product.imageUrl}
-                    alt="image"
+                    alt="商品圖片"
                     className="w-14 h-14 object-contain"
                   />
                   <div className="flex-1">

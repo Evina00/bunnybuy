@@ -3,44 +3,75 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import "remixicon/fonts/remixicon.css";
+import Loading from "../../components/Loading";
 
 function RabbitProducts() {
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("全部");
   const [pagination, setPagination] = useState({});
+  const [isLoading, setLoading] = useState(false);
 
   const getProducts = async (page = 1) => {
-    const productRes = await axios.get(
+    setLoading(true);
+
+    const res = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/products?page=${page}`
     );
 
-    const allProducts = productRes.data.products;
-    console.log(allProducts.map((p) => p.category));
+    // 兔子專區
+    const rabbitProducts = res.data.products.filter((p) =>
+      p.category.includes("兔")
+    );
 
-    const rabbitProducts = allProducts.filter((p) => p.category.includes("兔"));
+    // 動態分類
+    const dynamicCategories = [
+      "全部",
+      ...new Set(rabbitProducts.map((p) => p.category)),
+    ];
 
+    setAllProducts(rabbitProducts);
     setProducts(rabbitProducts);
-    setPagination(productRes.data.pagination);
+    setCategories(dynamicCategories);
+    setPagination(res.data.pagination);
+    setLoading(false);
   };
+
+  // 分類篩選
+  useEffect(() => {
+    if (activeCategory === "全部") {
+      setProducts(allProducts);
+    } else {
+      const filtered = allProducts.filter((p) => p.category === activeCategory);
+      setProducts(filtered);
+    }
+  }, [activeCategory, allProducts]);
 
   useEffect(() => {
     getProducts(5);
   }, []);
 
-  const categories = ["吃的", "喝的", "用的", "天天開心", "身體健康"];
-
   return (
     <>
       <div className=" bg-[#FFFCE0] min-h-screen  px-6 py-12">
+        <Loading isLoading={isLoading} />
         <div className="max-w-7xl mx-auto flex gap-8">
           <div className="w-40 flex flex-col items-center">
             <h2 className="text-2xl font-bold text-red-800 mb-6 border-b-2 border-red-800 pb-2 mr-12">
               兔兔專區
             </h2>
             <div className="space-y-4">
-              {categories.map((cat, i) => (
+              {categories.map((cat) => (
                 <button
-                  key={i}
-                  className="bg-white border-2 border-red-500 text-red-700 font-bold px-6 py-2 rounded-full hover:!bg-red-500 hover:!text-white transition duration-300"
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`border-2 px-6 py-2 rounded-full font-bold transition
+                  ${
+                    activeCategory === cat
+                      ? "bg-red-500 text-white border-red-500"
+                      : "bg-white border-red-500 text-red-700 hover:bg-red-500 "
+                  }`}
                 >
                   {cat}
                 </button>

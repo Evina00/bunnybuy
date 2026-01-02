@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function Navbar({ cartData }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,14 +16,13 @@ function Navbar({ cartData }) {
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-[#F9E581] py-2 shadow-xl shadow-black/25">
         <div className="mx-auto flex justify-between items-center px-4 py-2">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <img src="/weblogo.svg" alt="Logo" className="w-24 h-24" />
-          </div>
+          <Link to="/">
+            <div className="flex items-center space-x-3">
+              <img src="/weblogo.svg" alt="Logo" className="w-24 h-24" />
+            </div>
+          </Link>
 
-          {/* 右側 */}
           <div className="ml-auto flex items-center gap-2">
-            {/* 桌機版選單 */}
             <nav className="hidden md:flex gap-4 p-4">
               {navItems.map((item) => (
                 <NavLink
@@ -42,7 +41,6 @@ function Navbar({ cartData }) {
               ))}
             </nav>
 
-            {/* 購物車 */}
             <div className="relative mr-2">
               <NavLink to="/cart">
                 <i className="ri-shopping-cart-fill text-3xl text-orange"></i>
@@ -52,7 +50,6 @@ function Navbar({ cartData }) {
               </NavLink>
             </div>
 
-            {/* 手機版 Hamburger */}
             <button
               className="md:hidden text-3xl text-[#7B3F00]"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -62,8 +59,6 @@ function Navbar({ cartData }) {
           </div>
         </div>
       </header>
-
-      {/* 手機版選單 */}
       <div
         className={`md:hidden  fixed top-[96px] left-0 w-full bg-[#F9E581] shadow-lg z-40 transition-all duration-300 ${
           menuOpen
@@ -91,7 +86,6 @@ function Navbar({ cartData }) {
         </nav>
       </div>
 
-      {/* 撐開 fixed navbar 高度 */}
       <div className="h-[96px]" />
     </>
   );

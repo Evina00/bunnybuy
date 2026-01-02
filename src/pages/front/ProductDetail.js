@@ -2,21 +2,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "remixicon/fonts/remixicon.css";
 import { useOutletContext, useParams } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 function ProductDetail() {
   const [product, setProduct] = useState({});
   const [cartQuantity, setCartQuantity] = useState(1);
   const { id } = useParams();
   const [isLoadind, setIsLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
 
   const getProduct = async (id) => {
+    setLoading(true);
     const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
     );
 
     console.log(productRes);
     setProduct(productRes.data.product);
+    setLoading(false);
   };
 
   const addToCart = async () => {
@@ -49,6 +53,7 @@ function ProductDetail() {
   return (
     <>
       <div className=" bg-[#FFFCE0] min-h-screen  px-6  py-12">
+        <Loading isLoading={isLoading} />
         <div className="max-w-7xl mx-auto flex gap-8">
           <div className="w-40 flex flex-col items-center">
             <h2 className="text-2xl font-bold text-red-800 mb-6 border-b-2 border-red-800 pb-2 ">
@@ -67,9 +72,7 @@ function ProductDetail() {
           </div>
 
           <main className="col-span-10 ">
-            {/* 商品上半部 */}
             <div className=" flex gap-6 ">
-              {/* 左邊：商品圖片 */}
               <div className="bg-white rounded-2xl w-80 relative">
                 <span className="absolute top-2 left-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-md shadow-md">
                   <i class="ri-time-line"></i>
