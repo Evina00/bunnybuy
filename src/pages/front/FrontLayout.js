@@ -10,7 +10,7 @@ function FrontLayout() {
   const getCart = async () => {
     try {
       const res = await axios.get(
-        `/v2/api/${process.env.REACT_APP_API_PATH}/cart`
+        `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
       );
       console.log("購物車內容:", res);
       setCartData(res.data.data);
@@ -79,20 +79,20 @@ function FrontLayout() {
             <p className="font-bold mb-2 text-5xl sm:text-4xl py-12 ">客服</p>
             <ul className="space-y-2 text-3xl sm:text-2xl">
               <li>
-                <a
-                  href="https://www.youtube.com/"
+                <Link
+                  to="/Knowledge"
                   className="text-white no-underline font-bold"
                 >
-                  常見問題
-                </a>
+                  知識加油站
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.youtube.com/"
+                <Link
+                  to="/contact"
                   className="text-white no-underline font-bold"
                 >
-                  聯絡資訊
-                </a>
+                  聯絡我們
+                </Link>
               </li>
             </ul>
           </div>

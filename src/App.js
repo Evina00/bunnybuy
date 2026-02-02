@@ -13,6 +13,8 @@ import ProductDetail from "./pages/front/ProductDetail";
 import Cart from "./pages/front/Cart";
 import Checkout from "./pages/front/Checkout";
 import Success from "./pages/front/Success";
+import Knowledge from "./pages/front/Knowledge";
+import Contact from "./pages/front/Contact";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/success/:orderId" element={<Success />} />
+          <Route path="/knowledge" element={<Knowledge />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<Dashboard />}>
