@@ -15,6 +15,8 @@ import Checkout from "./pages/front/Checkout";
 import Success from "./pages/front/Success";
 import Knowledge from "./pages/front/Knowledge";
 import Contact from "./pages/front/Contact";
+import MemberLogin from "./pages/front/Member/MemberLogin";
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
           <Route path="/success/:orderId" element={<Success />} />
           <Route path="/knowledge" element={<Knowledge />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/member" element={<MemberLogin />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<Dashboard />}>
