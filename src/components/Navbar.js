@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthConText";
+
 
 function Navbar({ cartData }) {
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  
 
   const navItems = [
     { name: "首頁", path: "/" },
     { name: "關於我們", path: "/about" },
     { name: "兔兔專區", path: "/ribbit" },
     { name: "鼠鼠專區", path: "/rat" },
-    { name: "會員", path: "/member" },
   ];
+
+
+console.log("Navbar user:", user);
+
 
   return (
     <>
@@ -39,6 +46,23 @@ function Navbar({ cartData }) {
                   {item.name}
                 </NavLink>
               ))}
+
+          {user ? (
+      <NavLink
+        to="/memberpage"
+       className="no-underline px-6 py-2 rounded-full text-xl font-bold bg-green-500 text-white"
+               >
+        會員
+           </NavLink>
+             ) : (
+         <NavLink
+       to="/member"
+       className="no-underline px-6 py-2 rounded-full text-xl font-bold bg-white text-[#7B3F00]"
+        >
+         會員登入
+         </NavLink>
+          )}
+          
             </nav>
 
             <div className="relative mr-2">
@@ -49,6 +73,7 @@ function Navbar({ cartData }) {
                 </span>
               </NavLink>
             </div>
+
 
             <button
               className="md:hidden text-3xl text-[#7B3F00]"

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../data/Firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,6 +24,7 @@ export default function LoginForm() {
 
       console.log("登入成功：", userCredential.user);
       alert("登入成功！");
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError("帳號或密碼錯誤");

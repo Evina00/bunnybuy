@@ -7,14 +7,17 @@ import App from "./App";
 
 import axios from "axios";
 import { HashRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthConText";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <AuthProvider>
     <HashRouter>
       <App />
     </HashRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { setPersistence, browserSessionPersistence } from "firebase/auth";
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API,
@@ -14,3 +15,5 @@ export const firebaseConfig = {
 // Initialize Firebase
 export const App = initializeApp(firebaseConfig);
 export const auth = getAuth(App);
+
+setPersistence(auth, browserSessionPersistence);

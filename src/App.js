@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthConText";
 import Login from "./pages/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -16,10 +17,12 @@ import Success from "./pages/front/Success";
 import Knowledge from "./pages/front/Knowledge";
 import Contact from "./pages/front/Contact";
 import MemberLogin from "./pages/front/Member/MemberLogin";
+import MemberPage from "./pages/front/Member/MemberPage";
 
 
 function App() {
   return (
+    <AuthProvider>
     <div className="App">
       <Routes>
         <Route path="/" element={<FrontLayout />}>
@@ -34,6 +37,7 @@ function App() {
           <Route path="/knowledge" element={<Knowledge />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/member" element={<MemberLogin />} />
+          <Route path="/memberpage" element={<MemberPage />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<Dashboard />}>
@@ -43,6 +47,7 @@ function App() {
         </Route>
       </Routes>
     </div>
+    </AuthProvider>
   );
 }
 
