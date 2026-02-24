@@ -49,7 +49,6 @@ function Checkout() {
 
             <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label className="block mb-1 font-semibold">Email</label>
                 <Input
                   id="email"
                   labelText="Email"
@@ -71,7 +70,6 @@ function Checkout() {
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold">姓名</label>
                 <Input
                   id="name"
                   type="text"
@@ -90,7 +88,6 @@ function Checkout() {
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold">電話</label>
                 <Input
                   id="tel"
                   labelText="電話"
@@ -114,7 +111,6 @@ function Checkout() {
               </div>
 
               <div>
-                <label className="block mb-1 font-semibold">收貨地址</label>
                 <Input
                   id="address"
                   labelText="地址"
@@ -137,7 +133,7 @@ function Checkout() {
             </form>
           </div>
 
-          {/* 右：選購商品 */}
+     
           <div className="w-80 border-2 border-[#7A3E1D] p-6 rounded-md bg-[#FFFCE0]">
             <h2
               className="text-xl font-bold

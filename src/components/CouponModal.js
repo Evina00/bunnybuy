@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function CouponMadal({ closeModal, getCoupons, type, tempCoupon }) {
+function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
   const [tempData, setTempData] = useState({
     title: "",
     is_enabled: 1,
@@ -65,28 +65,6 @@ function CouponMadal({ closeModal, getCoupons, type, tempCoupon }) {
       console.log(res);
       closeModal();
       getCoupons();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const uploadFile = async (file) => {
-    console.log(file);
-    if (!file) {
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file-to-upload", file);
-
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/v2/api/${process.env.REACT_APP_API_PATH}/admin/upload`,
-        formData
-      );
-      console.log(res);
-      const { imageUrl } = res.data;
-      setTempData({ ...tempData, imageUrl: imageUrl });
     } catch (error) {
       console.log(error);
     }
@@ -212,4 +190,4 @@ function CouponMadal({ closeModal, getCoupons, type, tempCoupon }) {
   );
 }
 
-export default CouponMadal;
+export default CouponModal;
