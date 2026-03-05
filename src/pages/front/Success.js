@@ -86,7 +86,7 @@ function Success() {
 
             <div className="border-t pt-4 flex justify-between text-lg font-bold">
               <span>總金額：</span>
-              <span className="text-red-600">NT${orderData?.total}</span>
+              <span className="text-red-600">NT${Math.round(orderData?.total)}</span>
             </div>
           </div>
         </div>

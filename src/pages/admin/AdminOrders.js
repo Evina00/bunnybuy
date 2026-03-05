@@ -8,7 +8,7 @@ function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [pagination, setPagination] = useState({});
   // type: 決定 modal 展開的用途
-  const [type, setType] = useState("create"); // edit
+ // const [type, setType] = useState("create"); // edit
   const [tempOrder, setTempOrder] = useState({});
 
   const orderModal = useRef(null);
@@ -70,48 +70,40 @@ function AdminOrders() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => {
-            {
-              orders.map((order) => {
-                return (
-                  <tr key={order.id}>
-                    <td>{order.id}</td>
-                    <td>
-                      {order.user?.name}
-                      {order.user?.email}
-                    </td>
-                    <td>${order.total}</td>
-                    <td>
-                      {order.is_paid ? (
-                        <span className="text-success fw-bold">付款完成</span>
-                      ) : (
-                        "未付款"
-                      )}
-                    </td>
-                    <td>
-                      {order.paid_date
-                        ? new Date(order.paid_date * 1000).toLocaleString()
-                        : "未付款"}
-                    </td>
-                    <td>{order.message}</td>
+      {orders.map((order) => (
+      <tr key={order.id}>
+      <td>{order.id}</td>
+      <td>
+        {order.user?.name} <br />
+        {order.user?.email}
+      </td>
+      <td>${Math.round(order.total)}</td>
+      <td>
+        {order.is_paid ? (
+          <span className="text-success fw-bold">付款完成</span>
+        ) : (
+          "未付款"
+        )}
+       </td>
+       <td>
+        {order.paid_date
+          ? new Date(order.paid_date * 1000).toLocaleString()
+          : "未付款"}
+      </td>
+      <td>{order.message?.message || "-"}</td>
 
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-primary btn-sm"
-                        onClick={() => {
-                          openOrderModal(order);
-                        }}
-                      >
-                        查看
-                      </button>
-                    </td>
-                  </tr>
-                );
-              });
-            }
-          })}
-        </tbody>
+      <td>
+        <button
+          type="button"
+          className="btn btn-primary btn-sm"
+          onClick={() => openOrderModal(order)}
+        >
+          查看
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
       </table>
       <Pagination pagination={pagination} changePage={getOrders} />
     </div>

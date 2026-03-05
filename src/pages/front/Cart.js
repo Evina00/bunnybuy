@@ -160,7 +160,7 @@ function Cart() {
 
         <div className="flex justify-between items-center w-full px-6 mt-8">
           <h3 className="text-2xl font-bold text-[#391A1A]">
-            總金額: NT${cartData?.final_total}
+            總金額: NT${Math.round(cartData?.final_total || 0)}
           </h3>
 
           <NavLink to="/checkout">

@@ -36,7 +36,7 @@ function ProductModal({ closeProductModal, getOrders, tempOrder }) {
     setIsLoading(true);
     try {
       let api =
-        "/v2/api/${process.env.REACT_APP_API_PATH}/admin/order/${tempOrder.id}";
+        `/v2/api/${process.env.REACT_APP_API_PATH}/admin/order/${tempOrder.id}`;
       const res = await axios.put(api, {
         data: {
           ...tempData,
@@ -45,6 +45,7 @@ function ProductModal({ closeProductModal, getOrders, tempOrder }) {
       console.log(res);
       handleSuccessMessage(dispatch, res);
       setIsLoading(false);
+      closeProductModal();
       getOrders();
     } catch (error) {
       console.log(error);
@@ -142,7 +143,7 @@ function ProductModal({ closeProductModal, getOrders, tempOrder }) {
                 <tfoot>
                   <tr>
                     <td className="border-0 text-end">總金額</td>
-                    <td className="border-0">${tempOrder.total}</td>
+                    <td className="border-0">${Math.round(tempOrder.total)}</td>
                   </tr>
                 </tfoot>
               </table>
