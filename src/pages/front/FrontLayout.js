@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
+import ScrollUp from "../../components/ScrollUp";
 import axios from "axios";
 
 function FrontLayout() {
@@ -124,6 +125,7 @@ function FrontLayout() {
           </div>
         </div>
       </footer>
+      <ScrollUp />
     </>
   );
 }

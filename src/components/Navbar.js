@@ -21,13 +21,17 @@ console.log("Navbar user:", user);
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 bg-[#F9E581] py-2 shadow-xl shadow-black/25">
+      <header className="fixed top-0 left-0 w-full  z-50 bg-[#F9E581] py-2 shadow-xl shadow-black/25">
         <div className="mx-auto flex justify-between items-center px-4 py-2">
           <Link to="/">
-            <div className="flex items-center space-x-3">
-              <img src="/weblogo.svg" alt="Logo" className="w-24 h-24" />
-            </div>
-          </Link>
+          <div className="flex items-center space-x-3">
+          <img 
+          src="/weblogo.svg" 
+          alt="Logo" 
+          className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain" 
+        />
+       </div>
+     </Link>
 
           <div className="ml-auto flex items-center gap-2">
             <nav className="hidden md:flex gap-4 p-4">
