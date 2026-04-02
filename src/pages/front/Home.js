@@ -91,43 +91,45 @@ function Home() {
         />
       </section>
 
-      <section className="relative bg-[#FFF082] min-h-screen flex justify-center items-center py-10 sm:py-12 overflow-hidden">
-        <div className="bg-[#FFE066] max-w-5xl w-full px-8 py-10 rounded-[30px] text-center relative">
-          <h2 className="text-7xl sm:text-6xl font-bold text-[#F44336] leading-snug mb-6">
-            加入 <span className="text-[#F44336]">LINE 好友</span>
-            <br />
-            即享專屬優惠
-          </h2>
+      <section className="relative bg-[#FFF082] min-h-screen flex justify-center items-center py-20 px-4 sm:px-6 overflow-hidden">
+     <div className="bg-[#FFE066] max-w-5xl w-full px-6 py-12 sm:px-10 sm:py-16 rounded-[30px] text-center relative z-10 shadow-sm">
+  
+     <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#F44336] leading-tight mb-8">
+      加入 <span className="text-[#F44336]">LINE 好友</span>
+      <br />
+      即享專屬優惠
+     </h2>
 
-          <div className="flex justify-center items-center gap-3 mt-4">
-            <a
-              href="https://line.me/R/ti/p/@你的ID"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#366c35] text-white text-3xl font-bold px-6 py-2 rounded-full  hover:bg-green-700 transition "
-            >
-              立即加入
-            </a>
-            <img
-              src="/line.svg"
-              alt="Line Icon"
-              className="w-28 sm:w-32 ml-auto"
-            />
-          </div>
-        </div>
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-4">
+      <a
+        href="https://www.line.me/tw/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block bg-[#366c35] text-white text-xl sm:text-2xl md:text-3xl font-bold px-8 py-3 rounded-full hover:bg-green-700 transition shadow-lg"
+      >
+        立即加入
+      </a>
+      
+      <img
+        src="/line.svg"
+        alt="Line Icon"
+        className="w-20 sm:w-24 md:w-32"
+      />
+     </div>
+   </div>
 
-        <img
-          src="/rabbit_left.png"
-          alt="兔兔"
-          className="absolute bottom-0 left-0 w-76 sm:w-60 "
-        />
+   <img
+    src="/rabbit_left.png"
+    alt="兔兔"
+    className="absolute bottom-[-20px] left-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
+    />
 
-        <img
-          src="/mouse_right.png"
-          alt="鼠鼠"
-          className="absolute bottom-0 right-0 w-76 sm:w-60 "
-        />
-      </section>
+  <img
+    src="/mouse_right.png"
+    alt="鼠鼠"
+    className="absolute bottom-[-20px] right-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
+  />
+ </section>
     </>
   );
 }

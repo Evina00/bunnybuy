@@ -29,102 +29,74 @@ function FrontLayout() {
       <Navbar cartData={cartData}></Navbar>
       <Outlet context={{ getCart, cartData }}></Outlet>
 
-      <footer className="relative  overflow-hidden pt-16 py-8">
-        <img
-          src="/footer.bg.svg"
-          alt="波浪背景"
-          className="absolute top-0 left-0 w-full object-cover -z-10"
+      <footer className="relative overflow-hidden pt-16 pb-8">
+     <img
+    src="/footer.bg.svg"
+    alt="波浪背景"
+    className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+    />
+
+    <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col items-center md:flex-row  justify-between gap-12 mt-[90px] md:mt-[150px]">
+    
+    <div className="flex flex-col items-center md:items-start text-white">
+      <Link to="/">
+        <img 
+          src="/weblogo.svg" 
+          alt="logo" 
+          className="mb-3 w-28 h-28 md:w-36 md:h-36" 
         />
+      </Link>
+      <p className="font-bold text-2xl md:text-3xl tracking-wider">
+        毛毛補給站
+      </p>
+    </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-8 text-sm mt-[150px]">
-          <div className="flex flex-col items-center md:items-start py-12">
-            <Link to="/">
-              <img src="/weblogo.svg" alt="logo" className=" mb-2 w-36 h-36" />
-            </Link>
-            <p className="font-bold text-white text-4xl sm:text-3xl">
-              毛毛補給站
-            </p>
-          </div>
+    <div className="text-white flex flex-col items-center md:items-start">
+      <p className="font-bold mb-6 text-2xl md:text-3xl">
+        會員
+      </p>
+      <ul className="space-y-4 text-xl md:text-2xl p-0 list-none text-center md:text-left">
+        <li><Link to="/Register" className="text-white hover:opacity-80 transition font-medium no-underline">加入會員</Link></li>
+        <li><Link to="/order" className="text-white hover:opacity-80 transition font-medium no-underline">訂單查詢</Link></li>
+      </ul>
+    </div>
 
-          <div className="text-center  text-white ">
-            <p className="font-bold mb-2 text-5xl sm:text-4xl py-12">會員</p>
-            <ul className="space-y-2 text-3xl sm:text-2xl">
-              <li>
-                <a
-                  href="https://www.youtube.com/"
-                  className="text-white no-underline font-bold"
-                >
-                  加入會員
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.youtube.com/"
-                  className="text-white no-underline font-bold"
-                >
-                  訂單查詢
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.youtube.com/"
-                  className="text-white no-underline font-bold"
-                >
-                  會員資訊
-                </a>
-              </li>
-            </ul>
-          </div>
+    <div className="text-white flex flex-col items-center md:items-start">
+      <p className="font-bold mb-6 text-2xl md:text-3xl">
+        客服
+      </p>
+      <ul className="space-y-4 text-xl md:text-2xl p-0 list-none text-center md:text-left">
+        <li><Link to="/Knowledge" className="text-white hover:opacity-80 transition font-medium no-underline">知識加油站</Link></li>
+        <li><Link to="/contact" className="text-white hover:opacity-80 transition font-medium no-underline">聯絡我們</Link></li>
+      </ul>
+    </div>
 
-          <div className=" text-center  text-white">
-            <p className="font-bold mb-2 text-5xl sm:text-4xl py-12 ">客服</p>
-            <ul className="space-y-2 text-3xl sm:text-2xl">
-              <li>
-                <Link
-                  to="/Knowledge"
-                  className="text-white no-underline font-bold"
-                >
-                  知識加油站
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-white no-underline font-bold"
-                >
-                  聯絡我們
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <div className="text-white flex flex-col items-center ">
+      <p className="font-bold mb-6 text-2xl md:text-3xl">
+        關於我們
+      </p>
+      <div className="flex justify-center md:justify-start gap-4 mb-6">
+        <a href="https://www.instagram.com/" className="hover:scale-110 transition">
+          <img src="/instagram.png" alt="Instagram" className="w-8 h-8 md:w-10 md:h-10" />
+        </a>
+        <a href="https://www.facebook.com/" className="hover:scale-110 transition">
+          <img src="/facebook.png" alt="Facebook" className="w-8 h-8 md:w-10 md:h-10" />
+        </a>
+      </div>
+      <div className="text-lg md:text-xl space-y-2 font-bold text-center md:text-left">
+        <p>04-222-333</p>
+        <p className="break-all">rabibunny@gmail.com</p>
+      </div>
+    </div>
+  </div>
 
-          <div className="text-center  text-white">
-            <p className="font-bold mb-2 text-5xl sm:text-4xl py-12">
-              關於我們
-            </p>
-            <div className="flex justify-center  gap-3 mb-2">
-              <a href="https://www.instagram.com/">
-                <img
-                  src="/instagram.png"
-                  alt="Instagram"
-                  className="mb-2 w-12 h-12"
-                />
-              </a>
-              <a href="https://www.facebook.com/">
-                <img
-                  src="/facebook.png"
-                  alt="Facebook"
-                  className="mb-2 w-12 h-12"
-                />
-              </a>
-            </div>
-            <p className="space-y-2 text-3xl sm:text-2xl ">04-222-333</p>
-            <p className="space-y-2 text-3xl sm:text-2xl">
-              rabibunny@gmail.com
-            </p>
-          </div>
-        </div>
-      </footer>
+  <div className="relative z-10 text-center text-white/80 text-sm mt-16 border-t border-white/10 pt-8">
+    © 2026 毛毛補給站. All rights reserved.
+  </div>
+  </footer>
+
+    
+      
       <ScrollUp />
     </>
   );

@@ -18,6 +18,7 @@ import Knowledge from "./pages/front/Knowledge";
 import Contact from "./pages/front/Contact";
 import MemberLogin from "./pages/front/Member/MemberLogin";
 import MemberPage from "./pages/front/Member/MemberPage";
+import RegisterForm from "./pages/front/Member/RegisterForm";
 import Order from "./pages/front/Member/Order";
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/member" element={<MemberLogin />} />
           <Route path="/memberpage" element={<MemberPage />} />
+          <Route path="/Register" element={<RegisterForm />} />
           <Route path="/order" element={<Order />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>

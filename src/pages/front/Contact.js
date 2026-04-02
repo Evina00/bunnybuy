@@ -15,46 +15,47 @@ function Contact() {
               </h2>
               <span className="text-orange-500 text-5xl font-bold">／</span>
             </div>
-            <div className="flex gap-6 mb-8 ">
-              <ul className="space-y-4  flex justify-center content-center gap-6">
-              <li>
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="no-underline hover:opacity-80 transition "
-                >
-                  <i className="ri-facebook-box-fill text-4xl text-[#6B4B2A]"></i>
-                </a>
-              </li>
 
-              <li>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className=" no-underline hover:opacity-80 transition"
-                >
-                  <i className="ri-instagram-fill text-4xl text-[#6B4B2A]"></i>
-                </a>
-                
-              </li>
-              <li>
-                <a
-                  href="https://github.com/Evina00/bunnybuy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="no-underline hover:opacity-80 transition"
-                >
-                  <i className="ri-github-fill text-4xl text-[#6B4B2A]"></i>
-                </a>
-              </li>
-            </ul>
+            <div className="flex justify-center items-center mb-8 w-full">
+         <ul className="flex items-center gap-6 p-0 list-none">
+         <li>
+        <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+        className="no-underline hover:opacity-80 transition"
+      >
+        <i className="ri-facebook-box-fill text-4xl text-[#6B4B2A]"></i>
+      </a>
+      </li>
 
-            </div>
+     <li>
+      <a
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        className="no-underline hover:opacity-80 transition"
+      >
+        <i className="ri-instagram-fill text-4xl text-[#6B4B2A]"></i>
+      </a>
+      </li>
+
+       <li>
+      <a
+        href="https://github.com/Evina00/bunnybuy"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        className="no-underline hover:opacity-80 transition"
+      >
+        <i className="ri-github-fill text-4xl text-[#6B4B2A]"></i>
+         </a>
+       </li>
+        </ul>
+          </div>
+            
             <div className="space-y-4 text-[#6B4B2A] font-semibold">
               <div className="flex items-center gap-3">
                 <i className="ri-phone-fill"></i>

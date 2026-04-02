@@ -51,8 +51,10 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
+    <form onSubmit={handleSubmit(onSubmit)} className=" mt-24 space-y-4">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold">註冊頁面</h1>
+      <div className = 'mb-4'>
         <input
           type="email"
           placeholder="Email"
@@ -70,7 +72,7 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <div>
+      <div className = 'mb-4'>
         <input
           type="password"
           placeholder="密碼（至少 6 碼）"
@@ -105,6 +107,8 @@ export default function RegisterForm() {
       >
         {loading ? "註冊中..." : "註冊"}
       </button>
+      </div>
     </form>
+    
   );
 }
