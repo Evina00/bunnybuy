@@ -23,7 +23,7 @@ export default function MemberLogin() {
           </button>
         </div>
 
-        <h3 className="text-xl font-semibold mb-6">使用您的帳號</h3>
+        <h3 className="text-xl font-semibold mb-6">使用/註冊您的帳號</h3>
 
         {mode === "login" ? <LoginForm /> : <RegisterForm />}
       </div>

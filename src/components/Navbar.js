@@ -112,6 +112,23 @@ console.log("Navbar user:", user);
               {item.name}
             </NavLink>
           ))}
+          {user ? (
+      <NavLink
+        to="/memberpage"
+        onClick={() => setMenuOpen(false)}
+        className="no-underline px-6 py-2 rounded-full mt-2 text-lg font-bold bg-green-500 text-white"
+      >
+        會員
+      </NavLink>
+    ) : (
+      <NavLink
+        to="/member"
+        onClick={() => setMenuOpen(false)}
+        className="no-underline px-6 py-2 rounded-full mt-2 text-lg font-bold bg-white text-[#7B3F00]"
+      >
+        會員登入
+      </NavLink>
+    )}
         </nav>
       </div>
 
