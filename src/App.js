@@ -33,6 +33,7 @@ function App() {
           <Route path="/ribbit" element={<RabbitProducts />} />
           <Route path="/ribbit/:id" element={<ProductDetail />} />
           <Route path="/rat" element={<RatProducts />} />
+          <Route path="/rat/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/success/:orderId" element={<Success />} />

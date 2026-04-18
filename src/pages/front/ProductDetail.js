@@ -8,7 +8,6 @@ function ProductDetail() {
   const [product, setProduct] = useState({});
   const [cartQuantity, setCartQuantity] = useState(1);
   const { id } = useParams();
-  const [isLoadind, setIsLoading] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
 
@@ -30,7 +29,7 @@ function ProductDetail() {
         qty: cartQuantity,
       },
     };
-    setIsLoading(true);
+    setLoading(true);
     try {
       const res = await axios.post(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
@@ -38,10 +37,10 @@ function ProductDetail() {
       );
       console.log(res);
       getCart();
-      setIsLoading(false);
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -137,7 +136,7 @@ function ProductDetail() {
                   <button
                     className="bg-[#FF6E13] text-white px-4 py-2 rounded-md "
                     onClick={() => addToCart()}
-                    disabled={isLoadind}
+                    disabled={isLoading}
                   >
                     加入購物車
                     <i className="ri-shopping-cart-2-line text-white pl-2"></i>
