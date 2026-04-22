@@ -1,26 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "remixicon/fonts/remixicon.css";
+import { Link } from "react-router-dom";
 import { useOutletContext, useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 
 function ProductDetail() {
   const [product, setProduct] = useState({});
+  const [products, setProducts] = useState([]);
   const [cartQuantity, setCartQuantity] = useState(1);
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
 
-  const getProduct = async (id) => {
-    setLoading(true);
-    const productRes = await axios.get(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/product/${id}`
+  const getRelatedProducts = useCallback(async (category) => {
+  try {
+    const res = await axios.get(
+      `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
     );
+    const filtered = res.data.products
+      .filter((item) => item.category === category && item.id !== id)
+      .slice(0, 4);
+    setProducts(filtered);
+  } catch (error) {
+    console.log(error);
+  }
+}, [id]);
 
-    console.log(productRes);
-    setProduct(productRes.data.product);
-    setLoading(false);
-  };
+const getProduct = useCallback(async (productId) => {
+  setLoading(true);
+  try {
+    const res = await axios.get(
+      `/v2/api/${process.env.REACT_APP_API_PATH}/product/${productId}`
+    );
+    setProduct(res.data.product);
+    getRelatedProducts(res.data.product.category);
+  } catch (error) {
+    console.log(error);
+  }
+  setLoading(false);
+}, [getRelatedProducts]);
 
   const addToCart = async () => {
     const data = {
@@ -45,30 +64,25 @@ function ProductDetail() {
   };
 
   useEffect(() => {
-    getProduct(id);
-  }, [id]);
+  getProduct(id);
+  window.scrollTo(0, 0);
+}, [id, getProduct])
 
-  const categories = ["吃的", "喝的", "用的", "天天開心", "身體健康"];
+ 
+ 
   
 return (
   <>
     <div className="bg-[#FFFCE0] min-h-screen px-4 md:px-6 py-8 md:py-12">
       <Loading isLoading={isLoading} />
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
-        <div className="w-full lg:w-40 flex flex-col items-center">
-          <h2 className="text-xl md:text-2xl font-bold text-red-800 mb-4 md:mb-6 border-b-2 border-red-800 pb-2 w-full text-center lg:text-left">
-            兔兔專區
-          </h2>
-          <div className="flex flex-row lg:flex-col flex-wrap justify-center gap-3 lg:space-y-4 lg:gap-0 w-full">
-            {categories.map((cat, i) => (
-              <button
-                key={i}
-                className="bg-white border-2 border-red-500 text-red-700 font-bold px-4 py-1.5 md:px-6 md:py-2 rounded-full hover:bg-red-500 hover:text-white transition duration-300 text-sm md:text-base whitespace-nowrap"
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+      <div className="max-w-7xl mx-auto flex flex-col  gap-8">
+        <div className="w-full  flex flex-col items-center">
+          <h2 className="text-xl md:text-2xl font-bold text-red-800 mb-4 md:mb-6 border-b-2 border-red-800 pb-2 w-full text-center">
+         <Link to="/rabbit" className="no-underline hover:text-red-800">
+         全部 /
+        </Link>
+       <span> {product.category}</span>
+       </h2>
         </div>
 
         <main className="flex-1">
@@ -158,6 +172,50 @@ return (
               </p>
             </div>
           </div>
+          <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
+                其他 <span className="text-red-800">{product.category}</span> 的商品
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {products.map((item) => (
+                  <Link 
+                    to={`/product/${item.id}`} 
+                    key={item.id} 
+                    className="group relative p-[2px] rounded-xl transition-all duration-300 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:to-orange-300 shadow-sm hover:shadow-md flex flex-col"
+                  >
+                  <div className="bg-yellow-200 rounded-[10px] overflow-hidden flex flex-col flex-1">
+                    <div className="aspect-square overflow-hidden bg-gray-50">
+                      <img 
+                        src={item.imageUrl} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 "
+                      />
+                    </div>
+                    <div className="p-3 flex flex-col flex-1">
+                      <h4 className="text-sm font-medium text-gray-700 line-clamp-2 mb-2 flex-1">
+                        {item.title}
+                      </h4>
+                      <div className="text-orange-600 font-bold">
+                        特價 ${item.price}
+                      </div>
+                    </div>
+                    </div>
+                    <button
+                  className="text-red-500 no-underline px-2 md:px-4 py-3 rounded-md font-bold  text-sm md:text-base transition-transform duration-300 hover:scale-110 "
+                  onClick={(e) => {
+                    e.preventDefault();
+                    addToCart(item.id);
+                  }}
+                  disabled={isLoading}
+                >
+                  加入購物車
+                  <i className="ri-shopping-cart-2-line ml-1 md:ml-2"></i>
+                </button>
+                  </Link>
+                ))}
+                
+              </div>
+            </div>
         </main>
       </div>
     </div>
