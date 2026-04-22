@@ -11,7 +11,7 @@ function Navbar({ cartData }) {
   const navItems = [
     { name: "首頁", path: "/" },
     { name: "關於我們", path: "/about" },
-    { name: "兔兔專區", path: "/ribbit" },
+    { name: "兔兔專區", path: "/rabbit" },
     { name: "鼠鼠專區", path: "/rat" },
   ];
 

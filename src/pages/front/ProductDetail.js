@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "remixicon/fonts/remixicon.css";
-import { Link } from "react-router-dom";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams , Link ,useLocation } from "react-router-dom";
 import Loading from "../../components/Loading";
 
 function ProductDetail() {
@@ -12,6 +11,9 @@ function ProductDetail() {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
+
+  const location = useLocation();
+  const currentPath = location.pathname.includes('/rat') ? 'rat' : 'rabbit';
 
   const getRelatedProducts = useCallback(async (category) => {
   try {
@@ -78,7 +80,7 @@ return (
       <div className="max-w-7xl mx-auto flex flex-col  gap-8">
         <div className="w-full  flex flex-col items-center">
           <h2 className="text-xl md:text-2xl font-bold text-red-800 mb-4 md:mb-6 border-b-2 border-red-800 pb-2 w-full text-center">
-         <Link to="/rabbit" className="no-underline hover:text-red-800">
+         <Link to={`/${currentPath}/`} className="no-underline hover:text-red-800">
          全部 /
         </Link>
        <span> {product.category}</span>
@@ -179,7 +181,7 @@ return (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {products.map((item) => (
                   <Link 
-                    to={`/product/${item.id}`} 
+                    to={`/${currentPath}/${item.id}`}
                     key={item.id} 
                     className="group relative p-[2px] rounded-xl transition-all duration-300 hover:scale-105 hover:bg-gradient-to-br hover:from-orange-200 hover:to-orange-300 shadow-sm hover:shadow-md flex flex-col"
                   >
@@ -204,7 +206,7 @@ return (
                   className="text-red-500 no-underline px-2 md:px-4 py-3 rounded-md font-bold  text-sm md:text-base transition-transform duration-300 hover:scale-110 "
                   onClick={(e) => {
                     e.preventDefault();
-                    addToCart(item.id);
+                    addToCart(item.id, 1)
                   }}
                   disabled={isLoading}
                 >

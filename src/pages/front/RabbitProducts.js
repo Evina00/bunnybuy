@@ -98,7 +98,7 @@ function RabbitProducts() {
                   className="w-32 h-40 object-contain mb-3"
                 />
                 <p className="text-base font-bold text-gray-700 mb-12 text-center line-clamp-2 ">
-                  <Link to={`/ribbit/${products.id}`}>{products.title}</Link>
+                  <Link to={`/rabbit/${products.id}`}>{products.title}</Link>
                 </p>
                 <div className="flex justify-between items-center w-full">
                   <span className="text-[#FF8205] font-bold text-lg absolute bottom-3 left-3">
