@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollUp from "../../components/ScrollUp";
 import axios from "axios";
+import { MessageContext, messageReducer, initState } from "../../store/messageStore";
+import MessageModal from "../../components/Message"; 
 
 function FrontLayout() {
   const [cartData, setCartData] = useState({});
+
+  const [messageState, dispatch] = useReducer(messageReducer, initState);
 
   const getCart = async () => {
     try {
@@ -26,7 +30,9 @@ function FrontLayout() {
 
   return (
     <>
+    <MessageContext.Provider value={[messageState, dispatch]}>
       <Navbar cartData={cartData}></Navbar>
+      <MessageModal />
       <Outlet context={{ getCart, cartData }}></Outlet>
 
       <footer className="relative overflow-hidden pt-16 pb-8">
@@ -98,6 +104,7 @@ function FrontLayout() {
     
       
       <ScrollUp />
+      </MessageContext.Provider>
     </>
   );
 }

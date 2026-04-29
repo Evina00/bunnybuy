@@ -1,8 +1,13 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback ,useContext } from "react";
 import axios from "axios";
 import "remixicon/fonts/remixicon.css";
-import { useOutletContext, useParams , Link ,useLocation } from "react-router-dom";
+import { useOutletContext, useParams , Link ,useLocation ,useNavigate} from "react-router-dom";
 import Loading from "../../components/Loading";
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+} from "../../store/messageStore";
 
 function ProductDetail() {
   const [product, setProduct] = useState({});
@@ -11,6 +16,8 @@ function ProductDetail() {
   const { id } = useParams();
   const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
+  const [, dispatch] = useContext(MessageContext);
+  const navigate = useNavigate();
 
   const location = useLocation();
   const currentPath = location.pathname.includes('/rat') ? 'rat' : 'rabbit';
@@ -43,11 +50,13 @@ const getProduct = useCallback(async (productId) => {
   setLoading(false);
 }, [getRelatedProducts]);
 
-  const addToCart = async () => {
+
+
+  const addToCart = async (productId = product.id, qty = cartQuantity) => {
     const data = {
       data: {
-        product_id: product.id,
-        qty: cartQuantity,
+        product_id: productId,
+        qty: qty,
       },
     };
     setLoading(true);
@@ -58,12 +67,23 @@ const getProduct = useCallback(async (productId) => {
       );
       console.log(res);
       getCart();
+      handleSuccessMessage(dispatch, res);
       setLoading(false);
+      return true;
     } catch (error) {
       console.log(error);
       setLoading(false);
+      handleErrorMessage(dispatch, error);
+      return false;
     }
   };
+
+  const handleBuyNow = async () => {
+  const success = await addToCart();
+  if (success) {
+      navigate("/cart"); 
+    }
+};
 
   useEffect(() => {
   getProduct(id);
@@ -140,9 +160,10 @@ return (
                 </button>
               </div>
               <div className="flex gap-3 mt-auto">
-                <button className="flex-1 bg-white text-[#FF6E13] border border-[#FF6E13] px-2 md:px-4 py-3 rounded-md font-bold hover:bg-orange-50 transition-colors text-sm md:text-base">
-                  立即購買
-                  <i className="ri-fire-fill ml-1 md:ml-2"></i>
+                <button className="flex-1 bg-white text-[#FF6E13] border border-[#FF6E13] px-2 md:px-4 py-3 rounded-md font-bold hover:bg-orange-50 transition-colors text-sm md:text-base"
+                onClick={handleBuyNow}>
+                立即購買
+                <i className="ri-fire-fill ml-1 md:ml-2"></i>
                 </button>
                 <button
                   className="flex-1 bg-[#FF6E13] text-white px-2 md:px-4 py-3 rounded-md font-bold hover:bg-[#e66311] transition-colors disabled:bg-gray-400 text-sm md:text-base"
