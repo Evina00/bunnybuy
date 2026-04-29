@@ -65,15 +65,15 @@ function Cart() {
       );
 
       setCouponInfo({
-        info: couponCode,
-        infoState: res.data.success,
+        info: res.data.message,
+        infoState: true,
       });
 
       getCart(); 
     } catch (error) {
       console.log(error);
       setCouponInfo({
-        info: "",
+        info: error?.response?.data?.message || "優惠券無效",
         infoState: false,
       });
     } finally {
@@ -152,13 +152,13 @@ function Cart() {
           </button>
         </div>
 
-        {couponInfo.infoState && (
-          <p className="text-green-600 mt-2">
-            已套用優惠券：{couponInfo.info}
+        {couponInfo.info && (
+          <p className={`mt-2 font-medium ${couponInfo.infoState ? "text-green-600" : "text-red-600"}`}>
+            {couponInfo.info}
           </p>
         )}
 
-        <div className="flex justify-between items-center w-full px-6 mt-8">
+        <div className="flex justify-center items-center w-full px-6 mt-8 gap-12">
           <h3 className="text-2xl font-bold text-[#391A1A]">
             總金額: NT${Math.round(cartData?.final_total || 0)}
           </h3>
