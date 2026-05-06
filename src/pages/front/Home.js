@@ -1,101 +1,163 @@
+import { useEffect, useState ,useReducer} from "react";
+import axios from "axios";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation } from 'swiper/modules';
+import { useOutletContext,  Link } from "react-router-dom";
 import Carousel from "./Carousel";
-
-const rabbitItems = [
-  { title: "吃的", img: "/rabbit1.png" },
-  { title: "喝的", img: "/rabbit2.png" },
-  { title: "用的", img: "/rabbit3.png" },
-  { title: "天天開心", img: "/rabbit4.png" },
-  { title: "身體健康", img: "/rabbit5.png" },
-];
-
-const ratItems = [
-  { title: "吃的", img: "/rat1.png" },
-  { title: "喝的", img: "/rat2.png" },
-  { title: "用的", img: "/rat3.png" },
-  { title: "天天開心", img: "/rat4.png" },
-  { title: "身體健康", img: "/rat5.png" },
-];
+import 'swiper/css';
+import 'swiper/css/navigation';
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+  messageReducer,
+  initState,
+} from "../../store/messageStore";
 
 function Home() {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const { getCart } = useOutletContext();
+
+  const [state, dispatch] = useReducer(messageReducer, initState);
+
+  const getProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/products/all`
+      );
+      setProducts(res.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const addToCart = async (productId, qty = 1) => {
+    const data = {
+      data: {
+        product_id: productId,
+        qty: qty,
+      },
+    };
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
+        data
+      );
+      console.log(res);
+      getCart();
+      handleSuccessMessage(dispatch, res);
+      setLoading(false);
+      
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      handleErrorMessage(dispatch, error);
+    
+    }
+  };
+
+  
+  const rabbitItems = products.filter(item => item.category?.includes('兔子'));
+  const ratItems = products.filter(item => item.category?.includes('鼠'));
+
+  
+  const getSwiperConfig = (items) => ({ 
+  modules: [Autoplay, Navigation],
+  spaceBetween: 20,
+  slidesPerView: 2,
+  loop: items && items.length >= 5, 
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+  },
+  navigation: true,
+  breakpoints: {
+    640: { slidesPerView: 3 },
+    1024: { slidesPerView: 5 },
+  },
+  className: "mySwiper !pb-12"
+});
+
+if (isLoading) {
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-[#FFFCE0]">
+      <div className="text-[#C85A00] text-2xl font-bold animate-pulse">
+        載入中...
+      </div>
+    </div>
+  );
+}
+
   return (
     <>
       <Carousel />
-      <section className="relative  text-center py-12 px-4" id="rabbit">
+
+   
+      <section className="relative bg-[#FFF3A7] text-center py-12 px-4 overflow-hidden" id="rabbit">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           兔兔系列
           <img src="/rabbit.png" alt="兔兔" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 z-10 relative ">
-          {rabbitItems.map((item, i) => (
-            <div
-              key={i}
-              className="bg-[#FFE066] rounded-lg overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105"
-            >
-              <div className="p-4">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="mx-auto h-32 object-contain"
-                />
-              </div>
-              <div className="bg-[#FFA93C] text-white text-xl font-bold py-3">
-                {item.title}
-              </div>
-            </div>
-          ))}
+        <div className="max-w-[1400px] mx-auto px-4 relative z-10">
+          <Swiper {...getSwiperConfig(rabbitItems)}>
+            {rabbitItems.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard product={product} addToCart={addToCart} isLoading={isLoading}/>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        <img
-          src="/grass_bg2.svg"
-          alt="背景裝飾"
-          className="absolute bottom-0 left-0 w-full max-h-[300px] object-cover -z-10"
-        />
+        <div className="flex justify-end max-w-[1400px] mx-auto mt-4 px-10 relative z-20">
+           <button className="bg-[#FFFF00] text-[#391A1A] font-bold py-2 px-6 rounded-full flex items-center gap-2 hover:bg-white shadow-md">
+              立即選購 <i className="ri-arrow-right-line"></i>
+           </button>
+        </div>
+        
       </section>
 
-      <section
-        className=" bg-[#FFD56A] z-0 relative  text-center py-12 px-4"
-        id="rabbit"
-      >
+    
+      <section className="relative text-center py-12 px-4 overflow-hidden bg-[#FFD56A]" id="rat">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           鼠鼠系列
-          <img src="/rabbit.png" alt="兔兔" className="w-12 h-12" />
+          <img src="/rat1.png" alt="鼠鼠" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 z-10 relative ">
-          {ratItems.map((item, i) => (
-            <div
-              key={i}
-              className="bg-[#FFFFFF] rounded-lg overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105"
-            >
-              <div className="p-4">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="mx-auto h-32 object-contain"
-                />
-              </div>
-              <div className="bg-[#FFA93C] text-white text-xl font-bold py-3">
-                {item.title}
-              </div>
-            </div>
-          ))}
+        <div className="max-w-[1400px] mx-auto px-4 relative z-10">
+          <Swiper {...getSwiperConfig(ratItems)}>
+            {ratItems.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard product={product} addToCart={addToCart} isLoading={isLoading}/>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        <img
-          src="/grass_bg2.svg"
-          alt="背景裝飾"
-          className="absolute bottom-0 left-0 w-full max-h-[300px] object-cover -z-10"
-        />
+        <div className="flex justify-end max-w-[1400px] mx-auto mt-4 px-10 relative z-20">
+           <button className="bg-[#FFFF00] text-[#391A1A] font-bold py-2 px-6 rounded-full flex items-center gap-2 hover:bg-white shadow-md">
+              立即選購 <i className="ri-arrow-right-line"></i>
+           </button>
+        </div>
+
       </section>
 
-      <section className="relative bg-[#FFF082] min-h-screen flex justify-center items-center py-20 px-4 sm:px-6 overflow-hidden">
-     <div className="bg-[#FFE066] max-w-5xl w-full px-6 py-12 sm:px-10 sm:py-16 rounded-[30px] text-center relative z-10 shadow-sm">
+      <section className="relative bg-[#FF7112] min-h-screen flex justify-center items-center py-20 px-4 sm:px-6 overflow-hidden">
+     <div className="bg-white max-w-5xl w-full px-6 py-12 sm:px-10 sm:py-16 rounded-[30px] text-center relative z-10 shadow-sm">
   
-     <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#F44336] leading-tight mb-8">
-      加入 <span className="text-[#F44336]">LINE 好友</span>
+     <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#FF7112] leading-tight mb-8">
+      加入 <span className="text-[#FF7112]">LINE 好友</span>
       <br />
       即享專屬優惠
      </h2>
@@ -130,7 +192,32 @@ function Home() {
     className="absolute bottom-[-20px] right-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
   />
  </section>
+
     </>
+  );
+}
+
+function ProductCard({ product, addToCart, isLoading }) {
+  return (
+    <div className="bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-[#FFA93C] transition-all duration-300 group h-full flex flex-col">
+      <div className="p-4 bg-white h-48 flex items-center justify-center">
+        <img
+          src={product.imageUrl} 
+          alt={product.title}
+          className="max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+        />
+      </div>
+      <div className="bg-[#FF9F46] p-4 text-left text-white flex-grow">
+        <h3 className="font-bold text-lg truncate">{product.title}</h3>
+        <p className="text-sm text-[#FFF47C] opacity-90 line-clamp-2">{product.content}</p>
+        <p className="text-xl font-bold mt-2">${product.price}</p>
+        <button className="w-full bg-white text-[#FF3838] font-bold py-2 rounded-full mt-3 hover:bg-[#FFFCE0] transition-colors shadow-sm"
+        onClick={() => addToCart(product.id, 1)}
+          disabled={isLoading}>
+          {isLoading ? '處理中...' : '+加入購物車'}
+        </button>
+      </div>
+    </div>
   );
 }
 
