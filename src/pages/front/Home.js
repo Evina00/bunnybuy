@@ -1,8 +1,8 @@
-import { useEffect, useState ,useReducer} from "react";
+import { useEffect, useState, useContext} from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
-import { useOutletContext,  Link } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,8 +10,6 @@ import {
   MessageContext,
   handleSuccessMessage,
   handleErrorMessage,
-  messageReducer,
-  initState,
 } from "../../store/messageStore";
 
 function Home() {
@@ -19,7 +17,9 @@ function Home() {
   const [isLoading, setLoading] = useState(false);
   const { getCart } = useOutletContext();
 
-  const [state, dispatch] = useReducer(messageReducer, initState);
+  const messageData = useContext(MessageContext);
+  const dispatch = messageData[1];
+
 
   const getProducts = async () => {
     setLoading(true);
@@ -51,16 +51,13 @@ function Home() {
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
         data
       );
-      console.log(res);
       getCart();
       handleSuccessMessage(dispatch, res);
       setLoading(false);
       
     } catch (error) {
-      console.log(error);
       setLoading(false);
       handleErrorMessage(dispatch, error);
-    
     }
   };
 
@@ -198,7 +195,17 @@ if (isLoading) {
 }
 
 function ProductCard({ product, addToCart, isLoading }) {
+  const getProductPath = () => {
+    if (product.category?.includes('兔子')) {
+      return `/rabbit/${product.id}`;
+    }
+    if (product.category?.includes('鼠')) {
+      return `/rat/${product.id}`;
+    }
+  };
+
   return (
+    <Link to={getProductPath()}>
     <div className="bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-[#FFA93C] transition-all duration-300 group h-full flex flex-col">
       <div className="p-4 bg-white h-48 flex items-center justify-center">
         <img
@@ -212,12 +219,17 @@ function ProductCard({ product, addToCart, isLoading }) {
         <p className="text-sm text-[#FFF47C] opacity-90 line-clamp-2">{product.content}</p>
         <p className="text-xl font-bold mt-2">${product.price}</p>
         <button className="w-full bg-white text-[#FF3838] font-bold py-2 rounded-full mt-3 hover:bg-[#FFFCE0] transition-colors shadow-sm"
-        onClick={() => addToCart(product.id, 1)}
-          disabled={isLoading}>
+        onClick={(e) => {
+                    e.preventDefault();
+                    addToCart(product.id, 1)
+                  }}
+                  disabled={isLoading}
+                >
           {isLoading ? '處理中...' : '+加入購物車'}
         </button>
       </div>
     </div>
+    </Link>
   );
 }
 
