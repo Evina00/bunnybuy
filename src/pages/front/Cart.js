@@ -1,7 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+} from "../../store/messageStore";
 
 function Cart() {
   const { cartData, getCart } = useOutletContext();
@@ -11,7 +16,10 @@ function Cart() {
   const [couponInfo, setCouponInfo] = useState({
   info: '',
   infoState: false,
-})
+}
+)
+  const messageData = useContext(MessageContext);
+  const dispatch = messageData[1];
 
 
   const removeCartItem = async (id) => {
@@ -21,8 +29,10 @@ function Cart() {
       );
       getCart();
       console.log(res);
+      handleSuccessMessage(dispatch, res)
     } catch (error) {
       console.log(error);
+      handleErrorMessage(dispatch, error)
     }
   };
 
@@ -44,8 +54,10 @@ function Cart() {
       setLoadingItem(
         loadingItem.filter((loadingObject) => loadingObject !== item.id)
       );
+      handleSuccessMessage(dispatch, res)
     } catch (error) {
       console.log(error);
+      handleErrorMessage(dispatch, error)
     }
   };
 
