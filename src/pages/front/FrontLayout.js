@@ -96,8 +96,8 @@ function FrontLayout() {
     </div>
   </div>
 
-  <div className="relative z-10 text-center text-white/80 text-sm mt-16 border-t border-white/10 pt-8">
-    © 2026 毛毛補給站. All rights reserved.
+  <div className="relative z-10 text-center text-gray-200 font-semibold text-sm mt-16  pt-8">
+  無商業用途且僅供作品展示 | © 2026 毛毛補給站. All rights reserved.
   </div>
   </footer>
 

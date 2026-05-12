@@ -96,11 +96,14 @@ function Cart() {
   return (
     <div className="bg-[#FFFCE0] min-h-screen">
       <div className="flex flex-col items-center">
-        <h3 className="text-3xl font-bold text-[#391A1A] pb-2 mt-8">
+        <h3 className="text-3xl font-bold text-[#391A1A] pb-2 mt-8 inline-block border-b-[6px] border-[#F9E581] rounded-b-lg pb-1">
           購物車資訊
         </h3>
+     
 
-        {cartData?.carts?.map((item) => (
+        {cartData?.carts?.length > 0 ? (
+
+        (cartData?.carts?.map((item) => (
           <div
             key={item.id}
             className="bg-[#F9E581] mx-8 my-3 w-90 flex items-start gap-4 p-4 relative rounded-sm"
@@ -144,7 +147,21 @@ function Cart() {
               </span>
             </div>
           </div>
-        ))}
+        )))
+      ) : (
+        <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
+          <h3 className="text-xl font-bold text-gray-700 mb-2">
+              目前購物車沒有商品！！快去逛逛吧！！
+          </h3>
+          <NavLink to="">
+            <button className="bg-[#FF6E13] font-bold text-white px-6 py-3 rounded-md hover:scale-105 transition">
+              首頁
+            </button>
+          </NavLink>
+           </div>
+           
+         )}
+      
 
         <div className="flex gap-2 mt-6">
           <input
