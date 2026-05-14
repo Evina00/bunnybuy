@@ -74,6 +74,15 @@ function FrontLayout() {
       <ul className="space-y-4 text-xl md:text-2xl p-0 list-none text-center md:text-left">
         <li><Link to="/Knowledge" className="text-white hover:opacity-80 transition font-medium no-underline">知識加油站</Link></li>
         <li><Link to="/contact" className="text-white hover:opacity-80 transition font-medium no-underline">聯絡我們</Link></li>
+        {/* 新增後台連結 */}
+       <li>
+        <Link 
+         to="/login" 
+         className="text-white hover:opacity-80 transition font-medium no-underline"
+        >
+         <i className="ri-settings-4-line"></i> 登入後台
+       </Link>
+    </li>
       </ul>
     </div>
 
@@ -93,6 +102,7 @@ function FrontLayout() {
         <p>04-222-333</p>
         <p className="break-all">rabibunny@gmail.com</p>
       </div>
+      
     </div>
   </div>
 
