@@ -20,6 +20,7 @@ import MemberLogin from "./pages/front/Member/MemberLogin";
 import MemberPage from "./pages/front/Member/MemberPage";
 import RegisterForm from "./pages/front/Member/RegisterForm";
 import Order from "./pages/front/Member/Order";
+import NotFound from "./pages/front/NotFound";
 
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="coupons" element={<AdminCoupons />} />
           <Route path="orders" element={<AdminOrders />} />
+        </Route>
+        <Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
     </div>
