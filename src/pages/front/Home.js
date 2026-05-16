@@ -206,7 +206,7 @@ function ProductCard({ product, addToCart, isLoading }) {
 
   return (
     <Link to={getProductPath()}>
-    <div className="bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-[#FFA93C] transition-all duration-300 group h-full flex flex-col">
+    <div className="w-full max-w-sm sm:max-w-none bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-[#FFA93C] transition-all duration-300 group h-full flex flex-col">
       <div className="p-4 bg-white h-48 flex items-center justify-center">
         <img
           src={product.imageUrl} 
@@ -218,7 +218,7 @@ function ProductCard({ product, addToCart, isLoading }) {
         <h3 className="font-bold text-lg truncate">{product.title}</h3>
         <p className="text-sm text-[#FFF47C] opacity-90 line-clamp-2">{product.content}</p>
         <p className="text-xl font-bold mt-2">${product.price}</p>
-        <button className="w-full bg-white text-[#FF3838] font-bold py-2 rounded-full mt-3 hover:bg-[#FFFCE0] transition-colors shadow-sm"
+        <button className="w-full bg-white text-[#FF3838] font-bold py-3.5 md:py-2 px-6 rounded-full mt-3 hover:bg-[#FFFCE0] transition-colors shadow-sm"
         onClick={(e) => {
                     e.preventDefault();
                     addToCart(product.id, 1)
