@@ -30,20 +30,20 @@ function App() {
       <Routes>
         <Route path="/" element={<FrontLayout />}>
           <Route path="" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/rabbit" element={<RabbitProducts />} />
-          <Route path="/rabbit/:id" element={<ProductDetail />} />
-          <Route path="/rat" element={<RatProducts />} />
-          <Route path="/rat/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/success/:orderId" element={<Success />} />
-          <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/member" element={<MemberLogin />} />
-          <Route path="/memberpage" element={<MemberPage />} />
-          <Route path="/Register" element={<RegisterForm />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="about" element={<About />} />
+          <Route path="rabbit" element={<RabbitProducts />} />
+          <Route path="rabbit/:id" element={<ProductDetail />} />
+          <Route path="rat" element={<RatProducts />} />
+          <Route path="rat/:id" element={<ProductDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="success/:orderId" element={<Success />} />
+          <Route path="knowledge" element={<Knowledge />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="member" element={<MemberLogin />} />
+          <Route path="memberpage" element={<MemberPage />} />
+          <Route path="Register" element={<RegisterForm />} />
+          <Route path="order" element={<Order />} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<Dashboard />}>
@@ -51,9 +51,9 @@ function App() {
           <Route path="coupons" element={<AdminCoupons />} />
           <Route path="orders" element={<AdminOrders />} />
         </Route>
-        <Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Route>
+        
+        <Route path="*" element={<NotFound />}></Route>
+       
       </Routes>
     </div>
     </AuthProvider>
