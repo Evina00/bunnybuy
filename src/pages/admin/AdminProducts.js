@@ -27,12 +27,17 @@ function AdminProducts() {
 
   //頁數沒有帶入參數，預設值為1
   const getProducts = async (page = 1) => {
-    const productRes = await axios.get(
+    try{
+      const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/products?page=${page}`
     );
     console.log(productRes);
     setProducts(productRes.data.products);
     setPagination(productRes.data.pagination);
+    }catch(error){
+      console.error("抓取產品失敗：", error);
+    }
+  
   };
 
   const openProductModal = (type, product) => {
