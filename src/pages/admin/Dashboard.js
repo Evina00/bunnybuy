@@ -77,7 +77,7 @@ function Dashboard() {
 
   </div>
 </nav>
-      <div className="d-flex bg-orange-300" style={{ minHeight: "calc(100vh - 56px)" }}>
+      <div className="d-flex bg-warning-subtle" style={{ minHeight: "calc(100vh - 56px)" }}>
         <div className="bg-light" style={{ width: "200px" }}>
           <ul className="list-group list-group-flush">
             <Link

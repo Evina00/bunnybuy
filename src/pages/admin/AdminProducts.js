@@ -3,12 +3,13 @@ import axios from "axios";
 import ProductModal from "../../components/ProductModal";
 import DeleteModal from "../../components/DeleteModal";
 import Pagination from "../../components/Pagination";
+import Loading from "../../components/Loading";
 import { Modal } from "bootstrap";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
-  // type: 決定 modal 展開的用途
+  const [isLoading, setLoading] = useState(false);
   const [type, setType] = useState("create");
   const [tempProduct, setTempProduct] = useState({});
 
@@ -27,6 +28,8 @@ function AdminProducts() {
 
   //頁數沒有帶入參數，預設值為1
   const getProducts = async (page = 1) => {
+    setLoading(true);
+
     try{
       const productRes = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/products?page=${page}`
@@ -34,8 +37,12 @@ function AdminProducts() {
     console.log(productRes);
     setProducts(productRes.data.products);
     setPagination(productRes.data.pagination);
+
     }catch(error){
       console.error("抓取產品失敗：", error);
+      
+    } finally{
+      setLoading(false);
     }
   
   };
@@ -60,6 +67,8 @@ function AdminProducts() {
   };
 
   const deleteProduct = async (id) => {
+    setLoading(true);
+
     try {
       const res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product/${id}`
@@ -70,11 +79,14 @@ function AdminProducts() {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
     <div className="p-3">
+      <Loading isLoading={isLoading} />
       <ProductModal
         closeProductModal={closeProductModal}
         getProducts={getProducts}
@@ -89,7 +101,7 @@ function AdminProducts() {
       />
       <h3>產品列表</h3>
       <hr />
-      <div className="text-end">
+      <div className="text-end m-2">
         <button
           type="button"
           className="btn btn-primary btn-sm"
@@ -100,7 +112,7 @@ function AdminProducts() {
       </div>
       <table className="table">
         <thead>
-          <tr>
+          <tr className="table-light">
             <th scope="col">分類</th>
             <th scope="col">名稱</th>
             <th scope="col">售價</th>
@@ -109,6 +121,7 @@ function AdminProducts() {
           </tr>
         </thead>
         <tbody>
+          
           {products.map((product) => {
             return (
               <tr key={product.id}>

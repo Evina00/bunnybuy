@@ -3,13 +3,13 @@ import axios from "axios";
 import { Modal } from "bootstrap";
 import Pagination from "../../components/Pagination";
 import OrderModal from "../../components/OrderModal";
+import Loading from "../../components/Loading";
 
 function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [pagination, setPagination] = useState({});
-  // type: 決定 modal 展開的用途
- // const [type, setType] = useState("create"); // edit
   const [tempOrder, setTempOrder] = useState({});
+  const [isLoading, setLoading] = useState(false);
 
   const orderModal = useRef(null);
   useEffect(() => {
@@ -21,12 +21,23 @@ function AdminOrders() {
   }, []);
 
   const getOrders = async (page = 1) => {
-    const res = await axios.get(
+    setLoading(true);
+
+    try{
+      const res = await axios.get(
       `/v2/api/${process.env.REACT_APP_API_PATH}/admin/orders?page=${page}`
     );
     console.log(res);
     setOrders(res.data.orders);
     setPagination(res.data.pagination);
+
+    }catch(error){
+      console.error("抓取訂單失敗：", error);
+
+    }finally{
+      setLoading(false);
+    }
+    
   };
 
   const openOrderModal = (order) => {
@@ -41,6 +52,7 @@ function AdminOrders() {
 
   return (
     <div className="p-3">
+      <Loading isLoading={isLoading} />
       <OrderModal
         closeProductModal={closeOrderModal}
         getOrders={getOrders}
@@ -49,22 +61,14 @@ function AdminOrders() {
       <h3>訂單列表</h3>
       <hr />
       <div className="text-end">
-        <button
-          type="button"
-          className="btn btn-primary btn-sm"
-          onClick={() => openOrderModal("create", {})}
-        >
-          建立新商品
-        </button>
       </div>
       <table className="table">
         <thead>
-          <tr>
+          <tr className="table-light">
             <th scope="col">訂單 id</th>
             <th scope="col">購買用戶</th>
             <th scope="col">訂單金額</th>
             <th scope="col">付款狀態</th>
-            <th scope="col">付款日期</th>
             <th scope="col">留言訊息</th>
             <th scope="col">編輯</th>
           </tr>
@@ -98,7 +102,7 @@ function AdminOrders() {
           className="btn btn-primary btn-sm"
           onClick={() => openOrderModal(order)}
         >
-          查看
+          編輯
         </button>
       </td>
     </tr>
