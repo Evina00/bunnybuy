@@ -1,54 +1,116 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { Modal } from "bootstrap";
+import { useState, useEffect, useRef } from "react";
 
-function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
+
+function CouponModal({ isOpen, closeModal, getCoupons, type, tempCoupon }) {
   const [tempData, setTempData] = useState({
     title: "",
     is_enabled: 1,
     percent: 80,
-    due_date: 1555459200,
+    due_date: Math.floor(new Date().getTime() / 1000),
     code: "testCode",
   });
 
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date()); 
+  const couponModalRef = useRef(null);
+  
+  // 取得今天的日期字串 
+  const getTodayString = () => {
+    const today = new Date();
+    return `${today.getFullYear()}-${(today.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+  };
 
+  useEffect(() => {
+    if (couponModalRef.current) {
+      Modal.getOrCreateInstance(couponModalRef.current, {
+        backdrop: "static",
+        keyboard: false,
+      });
+    }
+    
+    // 監聽關閉事件自動清理 Backdrop
+    const currentRef = couponModalRef.current;
+    const handleHidden = () => {
+      document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
+    };
+    currentRef?.addEventListener("hidden.bs.modal", handleHidden);
+
+    return () => {
+      currentRef?.removeEventListener("hidden.bs.modal", handleHidden);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const modalInstance = Modal.getInstance(couponModalRef.current);
+    if (isOpen) {
+      modalInstance?.show();
+    } else {
+      modalInstance?.hide();
+    }
+  }, [isOpen]);
+
+  
+
+  // 監聽外部傳入的編輯/新增動作
   useEffect(() => {
     if (type === "create") {
       setTempData({
         title: "",
         is_enabled: 1,
         percent: 80,
-        due_date: 1555459200,
+        due_date: Math.floor(new Date().getTime() / 1000),
         code: "testCode",
       });
       setDate(new Date());
     } else if (type === "edit") {
       setTempData(tempCoupon);
-      setDate(new Date(tempCoupon.due_date));
+      if (tempCoupon.due_date) {
+        setDate(new Date(tempCoupon.due_date * 1000));
+      }
     }
   }, [type, tempCoupon]);
 
   const handleChange = (e) => {
-    const { value, name } = e.target;
-    if (["price", "origin_price"].includes(name)) {
-      setTempData({
-        ...tempData,
-        [name]: Number(value),
-      });
-    } else if (name === "is_enabled") {
-      setTempData({
-        ...tempData,
-        [name]: +e.target.checked, // boolean
-      });
-    } else {
-      setTempData({
-        ...tempData,
-        [name]: value,
-      });
-    }
+    const { value, name, checked, type } = e.target;
+    setTempData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? +checked : value,
+    }));
+  };
+
+  // 折扣限制 
+  const handleDiscountChange = (e) => {
+    const { name } = e.target;
+    let value = Number(e.target.value);
+    if (value < 1) value = 1;
+    if (value > 99) value = 99; 
+    if (value < 0) value = 0; 
+    setTempData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleDateChange = (e) => {
+    if (!e.target.value) return;
+    const selectedDate = new Date(e.target.value);
+    selectedDate.setHours(23, 59, 59, 0); //當天最後一秒
+    setDate(selectedDate);
   };
 
   const submit = async () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date < today) {
+      alert("到期日不能在今日以前！");
+      return;
+    }
+
+  
     try {
       let api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupon`;
       let method = "post";
@@ -56,24 +118,27 @@ function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
         api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/coupon/${tempCoupon.id}`;
         method = "put";
       }
-      const res = await axios[method](api, {
-        data: {
-          ...tempData,
-          due_date: date.getTime(), // 轉換成 nuix timestamp
-        },
-      });
+
+      const submitData = {
+        ...tempData,
+        percent: Number(tempData.percent),
+        due_date: Math.floor(date.getTime() / 1000),
+      };
+
+      const res = await axios[method](api, { data: submitData });
       console.log(res);
       closeModal();
       getCoupons();
     } catch (error) {
-      console.log(error);
+      console.error("送出優惠券失敗：", error.response?.data || error);
     }
   };
 
   return (
     <div
       className="modal fade"
-      id="productModal"
+      ref={couponModalRef}
+      id="couponModal"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -109,15 +174,15 @@ function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
             <div className="row">
               <div className="col-md-6 mb-2">
                 <label className="w-100" htmlFor="percent">
-                  折扣（%）
+                  折扣（%）<span className="text-muted small">1-99</span>
                   <input
-                    type="text"
+                    type="number"
                     name="percent"
                     id="percent"
                     placeholder="請輸入折扣（%）"
                     className="form-control mt-1"
-                    value={tempData.percent}
-                    onChange={handleChange}
+                    value={tempData.percent || ""}
+                    onChange={handleDiscountChange}
                   />
                 </label>
               </div>
@@ -128,6 +193,7 @@ function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
                     type="date"
                     id="due_date"
                     name="due_date"
+                    min={getTodayString()}
                     placeholder="請輸入到期日"
                     className="form-control mt-1"
                     value={`${date.getFullYear().toString()}-${(
@@ -138,9 +204,7 @@ function CouponModal({ closeModal, getCoupons, type, tempCoupon }) {
                       .getDate()
                       .toString()
                       .padStart(2, 0)}`}
-                    onChange={(e) => {
-                      setDate(new Date(e.target.value));
-                    }}
+                    onChange={handleDateChange}
                   />
                 </label>
               </div>
