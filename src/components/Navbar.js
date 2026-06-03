@@ -26,7 +26,7 @@ console.log("Navbar user:", user);
           <Link to="/">
           <div className="flex items-center space-x-3">
           <img 
-          src="/weblogo.svg" 
+          src="/img/weblogo.svg" 
           alt="Logo" 
           className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain" 
         />

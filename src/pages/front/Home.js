@@ -102,7 +102,7 @@ if (isLoading) {
       <section className="relative bg-[#FFF3A7] text-center py-12 px-4 overflow-hidden" id="rabbit">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           兔兔系列
-          <img src="/rabbit.png" alt="兔兔" className="w-12 h-12" />
+          <img src="/img/rabbit.png" alt="兔兔" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
@@ -128,7 +128,7 @@ if (isLoading) {
       <section className="relative text-center py-12 px-4 overflow-hidden bg-[#FFD56A]" id="rat">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           鼠鼠系列
-          <img src="/rat1.png" alt="鼠鼠" className="w-12 h-12" />
+          <img src="/img/rat1.png" alt="鼠鼠" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
@@ -170,7 +170,7 @@ if (isLoading) {
       </a>
       
       <img
-        src="/line.svg"
+        src="/img/line.svg"
         alt="Line Icon"
         className="w-20 sm:w-24 md:w-32"
       />
@@ -178,13 +178,13 @@ if (isLoading) {
    </div>
 
    <img
-    src="/rabbit_left.png"
+    src="/img/rabbit_left.png"
     alt="兔兔"
     className="absolute bottom-[-20px] left-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
     />
 
   <img
-    src="/mouse_right.png"
+    src="/img/mouse_right.png"
     alt="鼠鼠"
     className="absolute bottom-[-20px] right-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
   />

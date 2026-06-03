@@ -105,7 +105,7 @@ function RabbitProducts() {
                     ${products.price}
                   </span>
                   <button className="absolute bottom-3 right-3 bg-[#FFC70E] text-white rounded-full w-12 h-12 flex items-center justify-center">
-                    <i className="ri-shopping-cart-2-line ml-1 md:ml-2"></i>
+                    <img src="/img/smallcart.svg" alt="cart" className="w-8 h-8" />
                   </button>
                 </div>
               </div>
