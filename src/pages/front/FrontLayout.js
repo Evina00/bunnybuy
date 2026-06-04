@@ -7,6 +7,10 @@ import axios from "axios";
 import { MessageContext, messageReducer, initState } from "../../store/messageStore";
 import MessageModal from "../../components/Message"; 
 
+import footerBg from "../../assets/images/footer.bg.svg"
+import Instagram from "../../assets/images/instagram.png"
+import facebook from "../../assets/images/facebook.png"
+
 
 function FrontLayout() {
   const [cartData, setCartData] = useState({});
@@ -38,7 +42,7 @@ function FrontLayout() {
 
       <footer className="relative overflow-hidden pt-16 pb-8">
      <img
-    src="/img/footer.bg.svg"
+    src={footerBg}
     alt="footer"
     className="absolute top-0 left-0 w-full h-full object-cover -z-10"
     />
@@ -48,7 +52,7 @@ function FrontLayout() {
     <div className="flex flex-col items-center md:items-start text-white">
       <Link to="/">
         <img 
-          src="/img/weblogo.svg" 
+          src={`${process.env.PUBLIC_URL}/weblogo.svg`} 
           alt="logo" 
           className="mb-3 w-28 h-28 md:w-36 md:h-36" 
         />
@@ -93,10 +97,10 @@ function FrontLayout() {
       </p>
       <div className="flex justify-center md:justify-start gap-4 mb-6">
         <a href="https://www.instagram.com/" className="hover:scale-110 transition">
-          <img src="/img/instagram.png" alt="Instagram" className="w-8 h-8 md:w-10 md:h-10" />
+          <img src={Instagram} alt="Instagram" className="w-8 h-8 md:w-10 md:h-10" />
         </a>
         <a href="https://www.facebook.com/" className="hover:scale-110 transition">
-          <img src="/img/facebook.png" alt="Facebook" className="w-8 h-8 md:w-10 md:h-10" />
+          <img src={facebook} alt="Facebook" className="w-8 h-8 md:w-10 md:h-10" />
         </a>
       </div>
       <div className="text-lg md:text-xl space-y-2 font-bold text-center md:text-left">

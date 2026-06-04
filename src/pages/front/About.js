@@ -1,3 +1,7 @@
+import about from "../../assets/images/zsak1.png"
+import about2 from "../../assets/images/about2.svg"
+import vipIcon from "../../assets/images/vip-icon.svg"
+
 function About() {
   return (
     <>
@@ -57,7 +61,7 @@ function About() {
 
     <div className="order-2 md:order-1 flex-1 flex justify-center md:justify-end">
       <img
-        src="/img/zsak1.png"
+        src={about}
         alt="風景"
         className="w-full h-auto max-w-[480px] md:max-w-[550px] lg:max-w-[650px]  object-cover "
       />
@@ -67,7 +71,7 @@ function About() {
   <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16 pt-16 md:pt-24 ">
     <div className="flex-1 flex justify-center md:justify-start">
       <img
-        src="/img/about2.svg"
+        src={about2}
         alt="兔子"
         className="w-full h-auto max-w-[480px] md:max-w-[550px] lg:max-w-[650px]  object-cover"
       />
@@ -90,7 +94,7 @@ function About() {
     
       <div
         className="relative bg-cover bg-center min-h-screen flex flex-col items-center justify-center px-6 py-12"
-        style={{ backgroundImage: "url('/img/about-bg.svg')" }}
+        style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/img/about-bg.svg')` }}
       >
         <h2 className="text-5xl font-bold text-white mb-12 drop-shadow-md text-center">
           品牌理念
@@ -129,7 +133,7 @@ function About() {
     <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10">
       <div className="flex-shrink-0">
         <img
-          src="/img/vip-icon.svg"
+          src={vipIcon}
           alt="VIP Member"
           className="w-64 md:w-80 lg:w-[28rem]"
         />

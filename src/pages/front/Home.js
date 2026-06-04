@@ -12,6 +12,12 @@ import {
   handleErrorMessage,
 } from "../../store/messageStore";
 
+import rabbit1 from "../../assets/images/rabbit.png"
+import rat1 from "../../assets/images/rat1.png"
+import line from "../../assets/images/line.svg"
+import rabbit2 from "../../assets/images/rabbit_left"
+import rat2 from "../../assets/images/mouse_right"
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -102,7 +108,7 @@ if (isLoading) {
       <section className="relative bg-[#FFF3A7] text-center py-12 px-4 overflow-hidden" id="rabbit">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           兔兔系列
-          <img src="/img/rabbit.png" alt="兔兔" className="w-12 h-12" />
+          <img src={rabbit1} alt="兔兔" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
@@ -128,7 +134,7 @@ if (isLoading) {
       <section className="relative text-center py-12 px-4 overflow-hidden bg-[#FFD56A]" id="rat">
         <h2 className="text-2xl sm:text-4xl text-[#C85A00] font-bold flex justify-center items-center gap-2 mb-2">
           鼠鼠系列
-          <img src="/img/rat1.png" alt="鼠鼠" className="w-12 h-12" />
+          <img src={rat1} alt="鼠鼠" className="w-12 h-12" />
         </h2>
         <div className="h-1 w-48 bg-[#C85A00] mx-auto mb-10"></div>
 
@@ -170,7 +176,7 @@ if (isLoading) {
       </a>
       
       <img
-        src="/img/line.svg"
+        src={line}
         alt="Line Icon"
         className="w-20 sm:w-24 md:w-32"
       />
@@ -178,13 +184,13 @@ if (isLoading) {
    </div>
 
    <img
-    src="/img/rabbit_left.png"
+    src={rabbit2}
     alt="兔兔"
     className="absolute bottom-[-20px] left-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
     />
 
   <img
-    src="/img/mouse_right.png"
+    src={rat2}
     alt="鼠鼠"
     className="absolute bottom-[-20px] right-[-20px] w-40 sm:w-60 md:w-72 lg:w-80 opacity-90 sm:opacity-100"
   />

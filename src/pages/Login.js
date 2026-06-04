@@ -49,7 +49,7 @@ function Login() {
       
       <div className="col-md-6 d-flex flex-column align-items-center justify-content-center py-5 bg-white">
         <img 
-          src="/weblogo.svg" 
+          src={`${process.env.PUBLIC_URL}/weblogo.svg`}  
           alt="logo" 
           style={{ width: '120px', height: 'auto' }}
           className="mb-3"

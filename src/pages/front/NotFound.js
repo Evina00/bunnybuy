@@ -22,7 +22,7 @@ const NotFound = () => {
     
       <Link to="/" className="mb-6 transition transform hover:scale-105 duration-200">
         <img 
-          src="/weblogo.svg" 
+          src={`${process.env.PUBLIC_URL}/weblogo.svg`} 
           alt="logo" 
           className="w-36 h-auto"
         />

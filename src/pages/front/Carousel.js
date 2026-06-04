@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import carousel1 from "../../assets/images/carousel_1.svg";
+import carousel2 from "../../assets/images/carousel_2.svg";
 
-const images = ["/img/carousel_1.svg", "/img/carousel_2.svg"];
+const images = [carousel1, carousel2];
 
 function Carousel() {
   const [current, setCurrent] = useState(0);
