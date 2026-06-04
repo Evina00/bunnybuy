@@ -1,6 +1,7 @@
 import about from "../../assets/images/zsak1.png"
 import about2 from "../../assets/images/about2.svg"
 import vipIcon from "../../assets/images/vip-icon.svg"
+import aboutBg from '../../assets/images/about-bg.svg';
 
 function About() {
   return (
@@ -94,7 +95,7 @@ function About() {
     
       <div
         className="relative bg-cover bg-center min-h-screen flex flex-col items-center justify-center px-6 py-12"
-        style={{ backgroundImage: `url('${process.env.PUBLIC_URL}/img/about-bg.svg')` }}
+        style={{ backgroundImage: `url(${aboutBg})` }}
       >
         <h2 className="text-5xl font-bold text-white mb-12 drop-shadow-md text-center">
           品牌理念
