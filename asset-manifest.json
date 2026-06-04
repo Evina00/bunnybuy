@@ -1,18 +1,29 @@
 {
   "files": {
     "main.css": "/bunnybuy/static/css/main.d86558ff.css",
-    "main.js": "/bunnybuy/static/js/main.566b67cd.js",
+    "main.js": "/bunnybuy/static/js/main.528eb7c6.js",
+    "static/media/carousel_2.svg": "/bunnybuy/static/media/carousel_2.77a1334e55ac47f8d2f4e9af5ab423d0.svg",
+    "static/media/carousel_1.svg": "/bunnybuy/static/media/carousel_1.7a23ffd79c7ed54f2582d29318eec725.svg",
     "static/media/remixicon.svg?t=1766743011500": "/bunnybuy/static/media/remixicon.4a5c730580b89554671b.svg",
+    "static/media/about2.svg": "/bunnybuy/static/media/about2.aa73c82e6334b5cf1548c519e6d4e851.svg",
+    "static/media/zsak1.png": "/bunnybuy/static/media/zsak1.514120003bdcbeb6d309.png",
     "static/media/remixicon.eot?t=1766743011500": "/bunnybuy/static/media/remixicon.5ddbf82458d503d1f44f.eot",
     "static/media/remixicon.ttf?t=1766743011500": "/bunnybuy/static/media/remixicon.b454dc316078cbfa186e.ttf",
     "static/media/remixicon.woff?t=1766743011500": "/bunnybuy/static/media/remixicon.39733745abc9c14d8c7d.woff",
+    "static/media/footer.bg.svg": "/bunnybuy/static/media/footer.bg.e3b2934cda290fc673cca88dd1ecd283.svg",
     "static/media/remixicon.woff2?t=1766743011500": "/bunnybuy/static/media/remixicon.2a86a0a402e1b850cf87.woff2",
+    "static/media/vip-icon.svg": "/bunnybuy/static/media/vip-icon.ed8decc93e58372aaa8820850b26f9fe.svg",
+    "static/media/rat1.png": "/bunnybuy/static/media/rat1.0d2504dba2414eefebbf.png",
+    "static/media/rabbit.png": "/bunnybuy/static/media/rabbit.575cbc7daac4c8b8eea3.png",
+    "static/media/mouse_right.png": "/bunnybuy/static/media/mouse_right.fcec43474a2eb718b797.png",
+    "static/media/rabbit_left.png": "/bunnybuy/static/media/rabbit_left.00757c3c96c124307770.png",
+    "static/media/line.svg": "/bunnybuy/static/media/line.3edefa8a93d100cd4adf0b9ab5cf4301.svg",
     "index.html": "/bunnybuy/index.html",
     "main.d86558ff.css.map": "/bunnybuy/static/css/main.d86558ff.css.map",
-    "main.566b67cd.js.map": "/bunnybuy/static/js/main.566b67cd.js.map"
+    "main.528eb7c6.js.map": "/bunnybuy/static/js/main.528eb7c6.js.map"
   },
   "entrypoints": [
     "static/css/main.d86558ff.css",
-    "static/js/main.566b67cd.js"
+    "static/js/main.528eb7c6.js"
   ]
 }
