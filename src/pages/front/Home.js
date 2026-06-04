@@ -15,8 +15,8 @@ import {
 import rabbit1 from "../../assets/images/rabbit.png"
 import rat1 from "../../assets/images/rat1.png"
 import line from "../../assets/images/line.svg"
-import rabbit2 from "../../assets/images/rabbit_left"
-import rat2 from "../../assets/images/mouse_right"
+import rabbit2 from "../../assets/images/rabbit_left.png"
+import rat2 from "../../assets/images/mouse_right.png"
 
 function Home() {
   const [products, setProducts] = useState([]);
