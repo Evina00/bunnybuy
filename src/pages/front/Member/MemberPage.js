@@ -1,4 +1,5 @@
 import { useAuth } from "../../../context/AuthConText";
+import { Link } from "react-router-dom";
 import MemberLogin from "./MemberLogin";
 
 function MemberPage() {
@@ -19,14 +20,17 @@ function MemberPage() {
 
         <button
           onClick={logout}
-          className="w-full bg-green-500 text-white py-2 rounded mb-3"
+          className="w-full bg-green-500 text-white py-2 rounded mb-3 hover:bg-green-600 transition-colors font-bold"
         >
           登出
         </button>
 
-        <button className="w-full bg-red-500 text-white py-2 rounded">
-          訂單查詢
-        </button>
+        <Link 
+         to="/order" 
+        className="block w-full bg-red-500 hover:bg-red-600 transition-colors text-white py-2 rounded text-center font-bold no-underline"
+           >
+        訂單查詢
+        </Link>
       </div>
     </div>
   );
