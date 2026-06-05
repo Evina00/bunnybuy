@@ -6,9 +6,9 @@ export default function MemberLogin() {
   const [mode, setMode] = useState("login");
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-[#FFF9E6]">
-      <div className="w-[420px] bg-white border-2  rounded-md p-8">
-        <div className="flex gap-6 mb-6 text-2xl font-bold">
+    <section className="min-h-screen flex items-center justify-center bg-[#FFF9E6] ">
+      <div className="w-full max-w-[420px] bg-white border-2  rounded-xl p-6  md:p-8 sm:m-8 mx-auto shadow-md">
+        <div className="flex gap-6 mb-6 text-2xl md:text-2xl font-bold">
           <button
             onClick={() => setMode("login")}
             className={mode === "login" ? "text-red-500" : "text-gray-400"}
