@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bunnybuy/static/css/main.aed8b750.css",
-    "main.js": "/bunnybuy/static/js/main.273dc780.js",
+    "main.css": "/bunnybuy/static/css/main.0941a8c8.css",
+    "main.js": "/bunnybuy/static/js/main.8ac5a5da.js",
     "static/media/about-bg.svg": "/bunnybuy/static/media/about-bg.1d5d53ff3b203ac826f683c3f7d6e27f.svg",
     "static/media/remixicon.svg?t=1766743011500": "/bunnybuy/static/media/remixicon.4a5c730580b89554671b.svg",
     "static/media/about2.svg": "/bunnybuy/static/media/about2.aa73c82e6334b5cf1548c519e6d4e851.svg",
@@ -19,11 +19,11 @@
     "static/media/rabbit_left.png": "/bunnybuy/static/media/rabbit_left.00757c3c96c124307770.png",
     "static/media/line.svg": "/bunnybuy/static/media/line.3edefa8a93d100cd4adf0b9ab5cf4301.svg",
     "index.html": "/bunnybuy/index.html",
-    "main.aed8b750.css.map": "/bunnybuy/static/css/main.aed8b750.css.map",
-    "main.273dc780.js.map": "/bunnybuy/static/js/main.273dc780.js.map"
+    "main.0941a8c8.css.map": "/bunnybuy/static/css/main.0941a8c8.css.map",
+    "main.8ac5a5da.js.map": "/bunnybuy/static/js/main.8ac5a5da.js.map"
   },
   "entrypoints": [
-    "static/css/main.aed8b750.css",
-    "static/js/main.273dc780.js"
+    "static/css/main.0941a8c8.css",
+    "static/js/main.8ac5a5da.js"
   ]
 }
