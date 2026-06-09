@@ -131,11 +131,6 @@ return (
                   ${product.origin_price}
                 </span>
               </div>
-              <div className="mb-4 flex justify-end">
-                <button className="hover:text-red-500 transition-colors">
-                  <i className="ri-heart-add-fill text-2xl"></i>
-                </button>
-              </div>
               <p className="text-lg md:text-xl text-gray-600 mb-2 border-t-2 border-gray-100 pt-4">
                 數量
               </p>

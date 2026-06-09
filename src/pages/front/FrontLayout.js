@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, useReducer } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollUp from "../../components/ScrollUp";
+import ScrollToTop from "../../components/ScrollToTop";
 import axios from "axios";
 import { MessageContext, messageReducer, initState } from "../../store/messageStore";
 import MessageModal from "../../components/Message"; 
@@ -36,6 +37,7 @@ function FrontLayout() {
   return (
     <>
     <MessageContext.Provider value={[messageState, dispatch]}>
+      <ScrollToTop />
       <Navbar cartData={cartData}></Navbar>
       <MessageModal />
       <Outlet context={{ getCart, cartData }}></Outlet>

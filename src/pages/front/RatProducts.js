@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,useOutletContext} from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import "remixicon/fonts/remixicon.css";
 import Loading from "../../components/Loading";
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+} from "../../store/messageStore";
 
 import cart from "../../assets/images/smallcart.svg"
 
@@ -15,6 +20,8 @@ function RatProducts() {
   const [pagination, setPagination] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const { getCart } = useOutletContext();
+  const [, dispatch] = useContext(MessageContext);
 
   const getProducts = async (page = 1) => {
     setLoading(true);
@@ -38,6 +45,36 @@ function RatProducts() {
     setCategories(dynamicCategories);
     setPagination(res.data.pagination);
     setLoading(false);
+
+    setTimeout(() => {
+  window.scrollTo({ top: 0, behavior: "instant" });
+}, 0);
+  };
+
+  const addToCart = async (productId, qty=1) => {
+    const data = {
+      data: {
+        product_id: productId,
+        qty: qty,
+      },
+    };
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/cart`,
+        data
+      );
+      console.log(res);
+      getCart();
+      handleSuccessMessage(dispatch, res);
+      setLoading(false);
+      return true;
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      handleErrorMessage(dispatch, error);
+      return false;
+    }
   };
 
   // 分類篩選
@@ -101,9 +138,9 @@ function RatProducts() {
         </div>
 
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-            {products.map((products) => (
+            {products.map((item) => (
               <div
-                key={products.id}
+                key={item.id}
                 className="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition-transform duration-300 hover:scale-105 relative"
               >
                 <span className="absolute top-3 left-3 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-md shadow-md">
@@ -111,28 +148,31 @@ function RatProducts() {
                   限時優惠
                 </span>
 
-                <i className="absolute top-3 right-3 ri-heart-fill text-red-500 text-xl"></i>
-
                 {/* 商品圖片 */}
                 <div className="w-full h-40 flex items-center justify-center mb-3 mt-4">
                 <img
-                  src={products.imageUrl}
-                  alt={products.title}
+                  src={item.imageUrl}
+                  alt={item.title}
                   className="max-w-full max-h-full object-contain"
                 />
                 </div>
 
                 {/* 商品標題 */}
                 <p className="text-sm md:text-base font-bold text-gray-700 mb-12 text-center line-clamp-2 w-full px-2 ">
-                  <Link to={`/rabbit/${products.id}`}>{products.title}</Link>
+                  <Link to={`/rabbit/${item.id}`}>{item.title}</Link>
                 </p>
                 <div className="flex justify-between items-center w-full">
                   <span className="text-[#FF8205] font-bold text-lg absolute bottom-3 left-3">
-                    ${products.price}
+                    ${item.price}
                   </span>
-                  <button className="absolute bottom-4 right-4 bg-[#FFC70E] hover:bg-[#e6b20c] transition-colors text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-md">
-                    <img src={cart} alt="cart" className="w-8 h-8" />
-                  </button>
+                  <button 
+                  className={`absolute bottom-4 right-4 bg-[#FFC70E] transition-colors text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-md
+                 ${isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#e6b20c]" }`}
+                 onClick={() => addToCart(item.id)}
+                 disabled={isLoading}>
+                 <img src={cart} alt="cart" className="w-5 h-5 md:w-6 md:h-6" /> 
+  
+               </button>
                 </div>
               </div>
             ))}

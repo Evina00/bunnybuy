@@ -4,6 +4,8 @@ import vipIcon from "../../assets/images/vip-icon.svg"
 import aboutBg from '../../assets/images/about-bg.svg';
 
 function About() {
+
+
   return (
     <>
   <div className="relative">

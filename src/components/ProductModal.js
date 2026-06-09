@@ -61,7 +61,7 @@ function ProductModal({ closeProductModal, getProducts, type, tempProduct }) {
 
   const submit = async () => {
     try {
-      const finalData = { ...tempProduct, ...tempData }; // 🔑 合併
+      const finalData = { ...tempProduct, ...tempData }; 
       console.log("送出時的 finalData:", finalData);
 
       let api = `/v2/api/${process.env.REACT_APP_API_PATH}/admin/product`;
@@ -72,7 +72,6 @@ function ProductModal({ closeProductModal, getProducts, type, tempProduct }) {
       }
       const res = await axios[method](api, {
         data: finalData,
-        //data: tempData,
       });
       console.log(res);
       handleSuccessMessage(dispatch, res);
@@ -99,10 +98,7 @@ function ProductModal({ closeProductModal, getProducts, type, tempProduct }) {
         formData
       );
       console.log(res.data);
-      //const { imageUrl } = res.data;
       const imageUrl = res.data.imageUrl || res.data.data.url;
-
-      //setTempData({ ...tempData, imageUrl });
       setTempData((prev) => ({ ...prev, imageUrl }));
     } catch (error) {
       console.log(error);
