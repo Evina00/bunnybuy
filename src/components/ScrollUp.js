@@ -28,11 +28,11 @@ function ScrollUp () {
   const styles = {
     button: {
       position: 'fixed',
-      bottom: '40px',
-      right: '40px',
+      bottom: '96px',
+      right: '36px',
       width: '48px',
       height: '48px',
-      backgroundColor: '#f5c542',
+      backgroundColor: '#3ca555',
       color: '#fff',
       border: 'none',
       borderRadius: '8px',
@@ -55,11 +55,11 @@ function ScrollUp () {
       onClick={scrollToTop}
       style={styles.button}
       onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#e6b83c';
+        e.currentTarget.style.backgroundColor = '#3ca555';
         e.currentTarget.style.transform = 'translateY(-5px)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#f5c542';
+        e.currentTarget.style.backgroundColor = '#348f49';
         e.currentTarget.style.transform = 'translateY(0)';
       }}
       aria-label="Back to top"

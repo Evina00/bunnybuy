@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const images = [
@@ -61,13 +62,15 @@ function Carousel() {
             <p className="text-base md:text-xl font-medium mb-6 opacity-90 tracking-wide max-w-md drop-shadow">
               {img.subtitle}
             </p>
-
+            
+            <Link to="/rabbit" className="inline-block no-underline">
             <button className="bg-[#E3916E] hover:bg-[#d47f5b] hover:scale-105 transition-all text-white font-bold px-8 py-3 rounded-full flex items-center gap-2 shadow-lg text-base">
               立即選購
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </button>
+            </Link>
           </div>
         </div>
       ))}

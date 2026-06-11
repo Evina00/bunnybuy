@@ -123,9 +123,11 @@ if (isLoading) {
         </div>
 
         <div className="flex justify-end max-w-[1400px] mx-auto mt-4 px-10 relative z-20">
+          <Link to="/rabbit" className="inline-block no-underline">
            <button className="bg-[#FFFF00] text-[#391A1A] font-bold py-2 px-6 rounded-full flex items-center gap-2 hover:bg-white shadow-md">
               立即選購 <i className="ri-arrow-right-line"></i>
            </button>
+           </Link>
         </div>
         
       </section>
@@ -149,9 +151,11 @@ if (isLoading) {
         </div>
 
         <div className="flex justify-end max-w-[1400px] mx-auto mt-4 px-10 relative z-20">
+          <Link to="/rat" className="inline-block no-underline">
            <button className="bg-[#FFFF00] text-[#391A1A] font-bold py-2 px-6 rounded-full flex items-center gap-2 hover:bg-white shadow-md">
               立即選購 <i className="ri-arrow-right-line"></i>
            </button>
+           </Link>
         </div>
 
       </section>
