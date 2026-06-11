@@ -49,6 +49,7 @@ function FrontLayout() {
     className="absolute top-0 left-0 w-full h-full object-cover -z-10"
     />
 
+   {/* footer */}
     <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col items-center md:flex-row  justify-between gap-12 mt-[90px] md:mt-[150px]">
     
     <div className="flex flex-col items-center md:items-start text-white">
@@ -59,26 +60,26 @@ function FrontLayout() {
           className="mb-3 w-28 h-28 md:w-36 md:h-36" 
         />
       </Link>
-      <p className="font-bold text-2xl md:text-3xl tracking-wider">
+      <p className="font-bold text-2xl text-[#6B4B2A] md:text-3xl tracking-wider">
         毛毛補給站
       </p>
     </div>
 
     <div className="text-white flex flex-col items-center md:items-start">
-      <p className="font-bold mb-6 text-2xl md:text-3xl">
+      <p className="font-bold mb-6 text-2xl text-[#6B4B2A] md:text-3xl">
         會員
       </p>
-      <ul className="space-y-4 text-xl md:text-2xl p-0 list-none text-center md:text-left">
+      <ul className="space-y-4 text-2xl md:text-2xl p-0 list-none text-center md:text-left">
         <li><Link to="/Register" className="text-white hover:opacity-80 transition font-medium no-underline">加入會員</Link></li>
         <li><Link to="/order" className="text-white hover:opacity-80 transition font-medium no-underline">訂單查詢</Link></li>
       </ul>
     </div>
 
     <div className="text-white flex flex-col items-center md:items-start">
-      <p className="font-bold mb-6 text-2xl md:text-3xl">
+      <p className="font-bold mb-6 text-2xl text-[#6B4B2A] md:text-3xl">
         客服
       </p>
-      <ul className="space-y-4 text-xl md:text-2xl p-0 list-none text-center md:text-left">
+      <ul className="space-y-4 text-2xl md:text-2xl p-0 list-none text-center md:text-left">
         <li><Link to="/Knowledge" className="text-white hover:opacity-80 transition font-medium no-underline">知識加油站</Link></li>
         <li><Link to="/contact" className="text-white hover:opacity-80 transition font-medium no-underline">聯絡我們</Link></li>
         {/* 新增後台連結 */}
@@ -94,7 +95,7 @@ function FrontLayout() {
     </div>
 
     <div className="text-white flex flex-col items-center ">
-      <p className="font-bold mb-6 text-2xl md:text-3xl">
+      <p className="font-bold mb-6 text-2xl text-[#6B4B2A] md:text-3xl">
         關於我們
       </p>
       <div className="flex justify-center md:justify-start gap-4 mb-6">
