@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bunnybuy/static/css/main.0941a8c8.css",
-    "main.js": "/bunnybuy/static/js/main.8ac5a5da.js",
+    "main.js": "/bunnybuy/static/js/main.62f7117b.js",
     "static/media/about-bg.svg": "/bunnybuy/static/media/about-bg.1d5d53ff3b203ac826f683c3f7d6e27f.svg",
     "static/media/remixicon.svg?t=1766743011500": "/bunnybuy/static/media/remixicon.4a5c730580b89554671b.svg",
     "static/media/about2.svg": "/bunnybuy/static/media/about2.aa73c82e6334b5cf1548c519e6d4e851.svg",
@@ -20,10 +20,10 @@
     "index.html": "/bunnybuy/index.html",
     "static/media/line.svg": "/bunnybuy/static/media/line.3edefa8a93d100cd4adf0b9ab5cf4301.svg",
     "main.0941a8c8.css.map": "/bunnybuy/static/css/main.0941a8c8.css.map",
-    "main.8ac5a5da.js.map": "/bunnybuy/static/js/main.8ac5a5da.js.map"
+    "main.62f7117b.js.map": "/bunnybuy/static/js/main.62f7117b.js.map"
   },
   "entrypoints": [
     "static/css/main.0941a8c8.css",
-    "static/js/main.8ac5a5da.js"
+    "static/js/main.62f7117b.js"
   ]
 }
