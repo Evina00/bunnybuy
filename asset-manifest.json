@@ -1,11 +1,10 @@
 {
   "files": {
-    "main.css": "/bunnybuy/static/css/main.4d5001f4.css",
-    "main.js": "/bunnybuy/static/js/main.500ad25d.js",
+    "main.css": "/bunnybuy/static/css/main.26e4c401.css",
+    "main.js": "/bunnybuy/static/js/main.d9295ad0.js",
     "static/media/about-bg.svg": "/bunnybuy/static/media/about-bg.1d5d53ff3b203ac826f683c3f7d6e27f.svg",
     "static/media/remixicon.svg?t=1766743011500": "/bunnybuy/static/media/remixicon.4a5c730580b89554671b.svg",
     "static/media/about2.svg": "/bunnybuy/static/media/about2.aa73c82e6334b5cf1548c519e6d4e851.svg",
-    "static/media/zsak1.png": "/bunnybuy/static/media/zsak1.514120003bdcbeb6d309.png",
     "static/media/remixicon.eot?t=1766743011500": "/bunnybuy/static/media/remixicon.5ddbf82458d503d1f44f.eot",
     "static/media/remixicon.ttf?t=1766743011500": "/bunnybuy/static/media/remixicon.b454dc316078cbfa186e.ttf",
     "static/media/smallcart.svg": "/bunnybuy/static/media/smallcart.77d3e657f95c5e451fa0620c69bf3578.svg",
@@ -19,11 +18,11 @@
     "static/media/rabbit_left.png": "/bunnybuy/static/media/rabbit_left.00757c3c96c124307770.png",
     "index.html": "/bunnybuy/index.html",
     "static/media/line.svg": "/bunnybuy/static/media/line.3edefa8a93d100cd4adf0b9ab5cf4301.svg",
-    "main.4d5001f4.css.map": "/bunnybuy/static/css/main.4d5001f4.css.map",
-    "main.500ad25d.js.map": "/bunnybuy/static/js/main.500ad25d.js.map"
+    "main.26e4c401.css.map": "/bunnybuy/static/css/main.26e4c401.css.map",
+    "main.d9295ad0.js.map": "/bunnybuy/static/js/main.d9295ad0.js.map"
   },
   "entrypoints": [
-    "static/css/main.4d5001f4.css",
-    "static/js/main.500ad25d.js"
+    "static/css/main.26e4c401.css",
+    "static/js/main.d9295ad0.js"
   ]
 }
