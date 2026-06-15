@@ -13,6 +13,7 @@ function Cart() {
   const [loadingItem, setLoadingItem] = useState([]);
   const [couponCode, setCouponCode] = useState('');
   const [couponLoading, setCouponLoading] = useState(false);
+  const [isGlobalLoading, setIsGlobalLoading] = useState(false); //防連點狀態
   const [couponInfo, setCouponInfo] = useState({
   info: '',
   infoState: false,
@@ -21,8 +22,9 @@ function Cart() {
   const messageData = useContext(MessageContext);
   const dispatch = messageData[1];
 
-
+ // 單一商品刪除
   const removeCartItem = async (id) => {
+    setIsGlobalLoading(true);
     try {
       const res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/cart/${id}`
@@ -37,22 +39,27 @@ function Cart() {
   };
 
   const removeAllCartItem = async () => {
-    if (!window.confirm("確定要清空購物車內所有商品嗎？")) return;
+    const isConfirmed = window.confirm("確定要清空購物車內所有商品嗎？");
+     if (!isConfirmed) return;
 
+     setIsGlobalLoading(true);
     try {
       const res = await axios.delete(
         `/v2/api/${process.env.REACT_APP_API_PATH}/carts`
       );
-      getCart();
       console.log(res);
+      await getCart()
       handleSuccessMessage(dispatch, res)
     } catch (error) {
       console.log(error);
       handleErrorMessage(dispatch, error)
+    }finally {
+      setIsGlobalLoading(false);
+
     }
   };
 
-
+ // 修改商品數量
   const updateCartItem = async (item, quantity) => {
     const data = {
       data: {
@@ -75,12 +82,14 @@ function Cart() {
     } catch (error) {
       console.log(error);
       handleErrorMessage(dispatch, error)
+    }finally {
+      setLoadingItem((prev) => prev.filter((id) => id !== item.id));
     }
   };
 
+  // 套用優惠券
   const handleClickCoupon = async () => {
     if (!couponCode) return;
-
     setCouponLoading(true);
 
     try {
@@ -92,12 +101,10 @@ function Cart() {
           },
         }
       );
-
       setCouponInfo({
         info: res.data.message,
         infoState: true,
       });
-
       getCart(); 
     } catch (error) {
       console.log(error);
@@ -117,116 +124,122 @@ function Cart() {
           購物車資訊
         </h3>
 
-  {cartData?.carts?.length > 0 ? (
-    <>
-      {/* 清除全部按鈕 */}
-      <div className="w-full max-w-[600px] flex justify-end px-8 mt-4">
-        <button
-          onClick={removeAllCartItem}
-          className="text-red-500 border border-red-500 px-3 py-1 rounded-md hover:bg-red-500 hover:text-white transition flex items-center gap-1 text-sm font-bold"
-        >
-          <i className="ri-delete-bin-line"></i> 清除購物車
-        </button>
-      </div>
+        {cartData?.carts?.length > 0 ? (
+          <>
+            {/* 清除全部按鈕 */}
+            <div className="w-full max-w-[600px] flex justify-end px-8 mt-4">
+              <button
+                onClick={removeAllCartItem}
+                disabled={isGlobalLoading}
+                className={`text-red-500 border border-red-500 px-3 py-1 rounded-md transition flex items-center gap-1 text-sm font-bold
+                  ${isGlobalLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-red-500 hover:text-white"}`}
+              >
+                <i className="ri-delete-bin-line"></i> 清除購物車
+              </button>
+            </div>
 
-      {/*  購物車列表 */}
-      {cartData.carts.map((item) => (
-        <div
-          key={item.id}
-          className="bg-[#F9E581] mx-8 my-3 w-full max-w-[600px] flex items-start gap-4 p-4 relative rounded-sm shadow-sm"
-        >
-          <button onClick={() => removeCartItem(item.id)}>
-            <i className="ri-close-line absolute top-2 right-2 text-xl"></i>
-          </button>
+            {/* 購物車列表 */}
+            {cartData.carts.map((item) => (
+              <div
+                key={item.id}
+                className="bg-[#F9E581] mx-8 my-3 w-full max-w-[600px] flex items-start gap-4 p-4 relative rounded-sm shadow-sm"
+              >
+                <button 
+                  onClick={() => removeCartItem(item.id)}
+                  disabled={isGlobalLoading}
+                >
+                  <i className="ri-close-line absolute top-2 right-2 text-xl hover:text-red-500 transition"></i>
+                </button>
 
-          <img
-            src={item.product.imageUrl}
-            alt={item.product.title}
-            className="w-32 h-32 object-cover rounded"
-          />
+                <img
+                  src={item.product.imageUrl}
+                  alt={item.product.title}
+                  className="w-32 h-32 object-cover rounded"
+                />
 
-          <div className="flex flex-col flex-1 pr-8">
-            <p className="font-bold text-[#391A1A] text-lg mb-1">
-              {item.product.title}
-            </p>
+                <div className="flex flex-col flex-1 pr-8">
+                  <p className="font-bold text-[#391A1A] text-lg mb-1">
+                    {item.product.title}
+                  </p>
 
-            <span className="text-sm text-gray-700 line-clamp-1 mb-2">
-              {item.product.content}
-            </span>
+                  <span className="text-sm text-gray-700 line-clamp-1 mb-2">
+                    {item.product.content}
+                  </span>
 
-            <select
-              className="rounded-md px-2 py-1 text-sm bg-white border border-orange-200 w-20"
-              value={item.qty}
-              disabled={loadingItem.includes(item.id)}
-              onChange={(e) => updateCartItem(item, Number(e.target.value))}
-            >
-              {[...new Array(20)].map((_, num) => (
-                <option value={num + 1} key={num}>
-                  {num + 1}
-                </option>
-              ))}
-            </select>
+                  <select
+                    className="rounded-md px-2 py-1 text-sm bg-white border border-orange-200 w-20"
+                    value={item.qty}
+                    disabled={loadingItem.includes(item.id) || isGlobalLoading}
+                    onChange={(e) => updateCartItem(item, Number(e.target.value))}
+                  >
+                    {[...new Array(20)].map((_, num) => (
+                      <option value={num + 1} key={num}>
+                        {num + 1}
+                      </option>
+                    ))}
+                  </select>
 
-            <span className="absolute bottom-4 right-4 text-red-600 font-bold text-lg">
-              NT${item.final_total}
-            </span>
+                  <span className="absolute bottom-4 right-4 text-red-600 font-bold text-lg">
+                    NT${item.final_total}
+                  </span>
+                </div>
+              </div>
+            ))}
+
+            {/* 優惠券 */}
+            <div className="flex gap-2 mt-6">
+              <input
+                type="text"
+                placeholder="輸入折價碼"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                className="border px-3 py-2 rounded"
+                disabled={isGlobalLoading}
+              />
+              <button
+                onClick={handleClickCoupon}
+                disabled={couponLoading || isGlobalLoading}
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition disabled:opacity-50"
+              >
+                {couponLoading ? "套用中..." : "套用"}
+              </button>
+            </div>
+
+            {couponInfo.info && (
+              <p className={`mt-2 font-medium ${couponInfo.infoState ? "text-green-600" : "text-red-600"}`}>
+                {couponInfo.info}
+              </p>
+            )}
+
+            <div className="flex justify-center items-center w-full max-w-[600px] px-8 mt-8 mb-12 gap-12 border-t pt-6 border-orange-200">
+              <h3 className="text-2xl font-bold text-[#391A1A]">
+                總金額: NT${Math.round(cartData?.final_total || 0)}
+              </h3>
+
+              <NavLink to="/checkout">
+                <button className="bg-[#FF6E13] font-bold text-white px-6 py-3 rounded-md hover:scale-105 transition shadow-md">
+                  下一步
+                </button>
+              </NavLink>
+            </div>
+          </>
+        ) : (
+          /* 空狀態 */
+          <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
+            <h3 className="text-xl font-bold text-gray-700 mb-6">
+              目前購物車沒有商品...快去逛逛吧！！
+            </h3>
+            <NavLink to="/">
+              <button className="bg-[#FF6E13] font-bold text-white px-8 py-3 rounded-full hover:scale-105 transition shadow-lg">
+                回首頁逛逛
+              </button>
+            </NavLink>
           </div>
-        </div>
-      ))}
-    </>
-  ) : (
-    /* 空狀態提示 */
-    <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
-      <h3 className="text-xl font-bold text-gray-700 mb-4">
-        目前購物車沒有商品...快去逛逛吧！！
-      </h3>
-      <NavLink to="/">
-        <button className="bg-[#FF6E13] font-bold text-white px-8 py-3 rounded-full hover:scale-105 transition shadow-lg">
-          回首頁逛逛
-        </button>
-      </NavLink>
-    </div>
-  )}
-     
-        
-        <div className="flex gap-2 mt-6">
-          <input
-            type="text"
-            placeholder="輸入折價碼"
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.target.value)}
-            className="border px-3 py-2"
-          />
-
-          <button
-            onClick={handleClickCoupon}
-            disabled={couponLoading}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            {couponLoading ? "套用中..." : "套用"}
-          </button>
-        </div>
-
-        {couponInfo.info && (
-          <p className={`mt-2 font-medium ${couponInfo.infoState ? "text-green-600" : "text-red-600"}`}>
-            {couponInfo.info}
-          </p>
         )}
-
-        <div className="flex justify-center items-center w-full px-6 mt-8 gap-12">
-          <h3 className="text-2xl font-bold text-[#391A1A]">
-            總金額: NT${Math.round(cartData?.final_total || 0)}
-          </h3>
-
-          <NavLink to="/checkout">
-            <button className="bg-[#FF6E13] font-bold text-white px-6 py-3 rounded-md hover:scale-105 transition">
-              下一步
-            </button>
-          </NavLink>
-        </div>
       </div>
     </div>
   );
 }
+
 
 export default Cart;
