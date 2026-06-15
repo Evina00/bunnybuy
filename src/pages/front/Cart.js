@@ -217,7 +217,7 @@ function Cart() {
               </h3>
 
               <NavLink to="/checkout">
-                <button className="bg-[#FF6E13] font-bold text-white px-6 py-3 rounded-md hover:scale-105 transition shadow-md">
+                <button className="bg-[#FF6E13] font-bold text-white px-2 py-2 md:px-6 md:py-3 rounded-md hover:scale-105 transition shadow-md text-sm md:text-base">
                   下一步
                 </button>
               </NavLink>

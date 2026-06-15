@@ -32,12 +32,14 @@ export const CheckboxRadio = ({
     </>
   );
 };
-export const Input = ({ id, labelText, register, type, errors, rules, placeholder }) => {
+export const Input = ({ id, labelText, register, type, errors, rules, placeholder, icon }) => {
   return (
     <div className="flex flex-col gap-1.5 w-full">
-     
-      <label htmlFor={id} className="text-sm font-semibold text-[#391A1A]">
-        {labelText}
+     <label htmlFor={id} className="text-sm font-semibold text-[#391A1A] flex items-center gap-1.5">
+      {icon && (
+          <i className={`${icon} text-lg`} style={{ color: "rgb(174, 65, 2)" }}></i>
+        )}
+        <span>{labelText}</span>
       </label>
             
       <input

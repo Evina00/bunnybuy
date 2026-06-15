@@ -60,6 +60,7 @@ function Checkout() {
                   register={register}
                   errors={errors}
                   className="w-full h-10 px-3 rounded-sm outline-none"
+                  icon="ri-mail-fill"
                   rules={{
                     required: "Email 為必填",
                     pattern: {
@@ -78,6 +79,7 @@ function Checkout() {
                   placeholder="請輸入使用者名稱"
                   errors={errors}
                   register={register}
+                  icon="ri-user-fill"
                   rules={{
                     required: "使用者名稱為必填",
                     maxLength: {
@@ -98,6 +100,7 @@ function Checkout() {
                   register={register}
                   className="w-full h-10 px-3 rounded-sm outline-none"
                   placeholder="0933-123-123"
+                  icon="ri-phone-fill"
                   rules={{
                     required: "電話為必填",
                     minLength: {
@@ -120,6 +123,7 @@ function Checkout() {
                   placeholder="請輸入宅配地址"
                   errors={errors}
                   register={register}
+                  icon="ri-home-9-fill"
                   rules={{
                     required: "地址為必填",
                   }}
@@ -169,10 +173,10 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto flex justify-start items-center mt-6 md:mt-10">
-          <Link className="text-dark mt-md-0 mt-3" to="/cart">
+        <div className="max-w-6xl mx-auto flex justify-start items-center mt-6 md:mt-10 ">
+          <Link className="text-dark mt-md-0 mt-3 no-underline" to="/cart">
             <button className="flex items-center gap-2 text-lg font-bold transform transition duration-300 ease-in-out hover:scale-110">
-              <i className="ri-arrow-left-s-line"></i> 繼續選購
+              <i className="ri-arrow-left-circle-line"></i> 繼續選購
             </button>
           </Link>
         </div>

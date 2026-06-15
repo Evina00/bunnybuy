@@ -1,4 +1,3 @@
-import about from "../../assets/images/zsak1.png"
 import about2 from "../../assets/images/about2.svg"
 import vipIcon from "../../assets/images/vip-icon.svg"
 import aboutBg from '../../assets/images/about-bg.svg';
@@ -64,7 +63,7 @@ function About() {
 
     <div className="order-2 md:order-1 flex-1 flex justify-center md:justify-end">
       <img
-        src={about}
+        src="https://images.unsplash.com/photo-1564890769567-cae969d2f9ba?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="風景"
         className="w-full h-auto max-w-[480px] md:max-w-[550px] lg:max-w-[650px]  object-cover "
       />

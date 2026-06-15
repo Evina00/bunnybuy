@@ -78,22 +78,16 @@ function Carousel() {
       {/* 左右切換按鈕 */}
       <button 
         onClick={prevSlide}
-        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white hover:scale-105 p-2 rounded-full shadow-lg z-30 transition-all"
+        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white hover:scale-110 w-11 h-11 items-center justify-center rounded-full shadow-lg z-30 transition-all text-[#872E00] hover:text-[#e0a800]"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-8 h-8 rotate-180">
-          <circle cx="24" cy="24" r="22" fill="#ffc107" />
-          <path d="M35.52 25.3l-6 7a2 2 0 0 1-2.82.22c-.84-.72-.94-1.98-.22-2.82l3.17-3.7H14c-1.1 0-2-.9-2-2s.9-2 2-2h15.65l-3.17-3.7a2 2 0 1 1 3.04-2.6l6 7a1.85 1.85 0 0 1 0 2.6z" fill="#fff" />
-        </svg>
+        <i className="ri-arrow-left-double-line text-2xl "></i>
       </button>
 
       <button 
         onClick={nextSlide}
-        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white hover:scale-105 p-2 rounded-full shadow-lg z-30 transition-all"
+        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white hover:scale-110 w-11 h-11 items-center justify-center rounded-full shadow-lg z-30 transition-all text-[#872E00] hover:text-[#e0a800]"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-8 h-8">
-          <circle cx="24" cy="24" r="22" fill="#ffc107" />
-          <path d="M35.52 25.3l-6 7a2 2 0 0 1-2.82.22c-.84-.72-.94-1.98-.22-2.82l3.17-3.7H14c-1.1 0-2-.9-2-2s.9-2 2-2h15.65l-3.17-3.7a2 2 0 1 1 3.04-2.6l6 7a1.85 1.85 0 0 1 0 2.6z" fill="#fff" />
-        </svg>
+       <i className="ri-arrow-right-double-line text-2xl"></i>
       </button>
 
       
