@@ -37,11 +37,13 @@ function Checkout() {
 
   return (
     <>
-      <div className="bg-[#FFFCE0] min-h-screen py-16">
-        <div className="max-w-6xl mx-auto flex gap-8">
-          <div className="flex-1 bg-[#FCEB84] p-8 rounded-md">
+      <div className="bg-[#FFFCE0] min-h-screen py-8 md:py-16 px-4 md:px-6">
+        <div className="w-full max-w-6xl mx-auto !flex !flex-col-reverse md:!flex-row gap-8 !items-start">
+
+          {/* 左側：宅配資料表單 */}
+          <div className="w-full md:flex-1 bg-[#FCEB84] p-6 md:p-8  rounded-xl shadow-sm border">
             <h2
-              className="text-2xl text-[#391A1A]
+            className="text-2xl text-[#391A1A]
             font-bold mb-6"
             >
               宅配資料
@@ -53,7 +55,6 @@ function Checkout() {
                   id="email"
                   labelText="Email"
                   type="email"
-                  name="email"
                   aria-describedby="emailHelp"
                   placeholder="example@gmail.com"
                   register={register}
@@ -73,14 +74,15 @@ function Checkout() {
                 <Input
                   id="name"
                   type="text"
-                  errors={errors}
                   labelText="使用者名稱"
+                  placeholder="請輸入使用者名稱"
+                  errors={errors}
                   register={register}
                   rules={{
                     required: "使用者名稱為必填",
                     maxLength: {
-                      Value: 10,
-                      message: "使用者名稱長度不超過10",
+                     required: "使用者名稱為必填",
+                     maxLength: { value: 10, message: "使用者名稱長度不超過10" },
                     },
                   }}
                   className="w-full h-10 px-3 rounded-sm outline-none"
@@ -115,6 +117,7 @@ function Checkout() {
                   id="address"
                   labelText="地址"
                   type="address"
+                  placeholder="請輸入宅配地址"
                   errors={errors}
                   register={register}
                   rules={{
@@ -133,10 +136,10 @@ function Checkout() {
             </form>
           </div>
 
-     
-          <div className="w-80 border-2 border-[#7A3E1D] p-6 rounded-md bg-[#FFFCE0]">
+         {/* 選購商品 */}
+          <div className="w-full md:w-80 h-fit border-2 border-[#7A3E1D] p-6  rounded-xl bg-[#FFFCE0] shadow-sm">
             <h2
-              className="text-xl font-bold
+            className="text-xl font-bold
             text-[#391A1A] mb-4"
             >
               選購商品
@@ -166,7 +169,7 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto flex justify-between items-center mt-10">
+        <div className="max-w-6xl mx-auto flex justify-start items-center mt-6 md:mt-10">
           <Link className="text-dark mt-md-0 mt-3" to="/cart">
             <button className="flex items-center gap-2 text-lg font-bold transform transition duration-300 ease-in-out hover:scale-110">
               <i className="ri-arrow-left-s-line"></i> 繼續選購
