@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# 🐰Bunny buy | 毛毛補給站電商平台
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bunny buy 是一個專為特寵兔、鼠打造的電商購物平台，包含前台購物流程與後台管理系統。 包括商品瀏覽、購物車、結帳流程與後台商品管理、訂單管理、優惠券管理功能，因市面上大多為狗貓為主的平台，身為一個兔奴時常需要到專門的店面才能購買，養兔子跟寵物鼠的人也越來越多，才需要個平台來供應市場需求。
 
-## Available Scripts
+🔗**[前台Demo]**
+🔗**[後台Demo]** (建議使用裝置解析度寬1440px以上)
 
-In the project directory, you can run:
 
-### `npm start`
+## 開發與參與人員
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**設計**: 本人Evina
+**前端**: 本人Evina，前台後台切版、API串接、功能資料渲染等。
+**後端**: 運用現成 API 與 pathURL 串接
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 功能介紹
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+串接 RESTful API，支援商品、訂單、優惠券等操作
+使用sass管理樣式、Bootstrap(後台) Tailwindcss(前台)
+前台:購物車功能、RWD 響應式設計
+前台使用firebase完成會員註冊登入
 
-### `npm run build`
+* 前台:
+首頁
+商品列表、商品詳細頁、商品分類篩選
+加入購物車、修改數量、刪除商品
+購物填寫表單結帳流程(react-hook-form)
+品牌介紹頁
+會員註冊及登入頁(firebase)
+響應式設計（RWD）
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* 後台:
+管理者登入
+商品管理:新增、編輯、刪除、查看
+訂單管理:編輯
+優惠券管理:新增、編輯
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 技術架構與套件
+框架:React v18.2.0
+樣式:bootstrap5(後台)、tailwindcss v4.3(前台)、Sass v1.94.0
+套件:remixicon v4.7.0、swiper v12.1.4、react-loading
+路由管理:react-hook-form
+API串接:Axios  v1.9.0 (課程提供API)
+表單管理:react-hook-form v7.69.0
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 第三方服務
+Firebase v12.8.0
+tawk.to - live chat
 
-### `npm run eject`
+## 專案資料夾說明
+src/
+├─ assets/images/    # 靜態資源（圖檔）
+├─ component/        # 重複使用的元件
+├─ context/          # 全域狀態管理
+├─ data/Firebase/    # Firebase 初始化設定
+├─ hooks/            # 自定義 React Hooks
+├─ pages/            # 頁面架構
+├─ store/            # message 狀態管理
+├─ stylesheets/      # Sass 樣式設定
+├─ App.css           # 樣式設定
+├─ App.js            # 頁面導覽管理
+├─ index.css         # 樣式設定
+└─ index.js          # 專案進入點設定
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 快速啟動
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 安裝套件
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# 啟動專案
+npm run dev
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 畫面預覽
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+首頁畫面
+![首頁預覽](screenshots/home-screenshot1.png)
+![首頁預覽](screenshots/home-screenshot2.png)
+![首頁預覽](screenshots/home-screenshot3.png)
+![首頁預覽](screenshots/home-screenshot4.png)
+![首頁預覽](screenshots/home-screenshot5.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+產品列表畫面
+![產品預覽](screenshots/RabbitProducts.png)
+![產品預覽](screenshots/RabbitProducts2.png)
 
-### Code Splitting
+產品頁面
+![產品頁面預覽](screenshots/ProductDetail.png)
+![產品頁面預覽](screenshots/ProductDetail2.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+後台管理頁面
+![後台管理頁面](screenshots/admin.png)
