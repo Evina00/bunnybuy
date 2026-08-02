@@ -39,7 +39,7 @@ Bunny buy 是一個專為特寵兔、鼠打造的電商購物平台，包含前�
 * **框架**:React v18.2.0
 * **樣式**:bootstrap5(後台)、tailwindcss v4.3(前台)、Sass v1.94.0
 * **套件**:remixicon v4.7.0、swiper v12.1.4、react-loading
-* **路由管理**:react-hook-form
+* **路由管理**:react-router-dom
 * **API串接**:Axios  v1.9.0 (課程提供API)
 * **表單管理**:react-hook-form v7.69.0
 
